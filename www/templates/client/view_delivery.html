@@ -1,0 +1,55 @@
+<ion-view>
+    <ion-nav-title>
+        Top Mais Delivery - Pedido
+    </ion-nav-title>
+    <div class="bar bar-subheader">
+        <h2 class="title">
+            Pedido: #{{order.id}} Total: R$ {{order.total}}
+        </h2>
+    </div>
+    <ion-content  class="padding has-subheader">
+
+        <ion-list>
+            <div class="item item-divider">
+                Data da Compra {{order.created_at.date|limitTo:10|date:'dd/MM/yyyy'}}
+            </div>
+            <ion-item ng-repeat="item in order.items.data">
+                <h2 class="">
+                    {{item.product.data.name}}
+                </h2>
+                <div class="row">
+                    <div class="col">
+                        QTD: {{item.qtd}} <br />
+                        <i class="ion ion-cash"> {{item.price}}</i>
+                    </div>
+                    <div class="col">
+                        <i class="ion ion-social-usd"> {{item.qtd* item.price}}</i>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+
+        <ui-gmap-google-map center="map.center" zoom="map.zoom" bounds="map.bounds">
+            <ui-gmap-map-control template='button-descentralize.tpl.html' position='top-right' index='-1'>
+                <div ng-controller='CdvControlDescentralize'>
+                    <button class="button button-stable button-small" ng-click="fit()">
+                        <i class="ion ion-android-bicycle" ng-class="{'ion-android-bicycle':!map.fit,'ion-stop':map.fit}"></i>
+                    </button>
+                </div>
+            </ui-gmap-map-control>
+            <ui-gmap-map-control template='button-reload.html' position='top-right' index='-1'>
+                <div ng-controller='CdvControlReload'>
+                    <button class="button button-stable button-small" ng-click="reload()">
+                        <i class="ion ion-refresh"></i>
+                    </button>
+                </div>
+            </ui-gmap-map-control>
+            <ui-gmap-markers models="markers" coords="'coords'" options="'options'" fit="map.fit"></ui-gmap-markers>
+        </ui-gmap-google-map>
+    </ion-content>
+</ion-view>
+<style type="text/css">
+    .angular-google-map-container{
+        height: 300px;
+    }
+</style>

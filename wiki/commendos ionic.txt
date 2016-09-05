@@ -1,0 +1,28 @@
+ID applicativo 663568355437
+
+key AIzaSyBcLHzfVL8BIubGlFscXMPBJWBFqfFWbeQ
+
+- criar perfil ionic (list)
+
+ionic security profiles add "nomed_do_perfil"
+
+- GCM do painel do ionic.io é o id do aplicativo na pagina do google.
+
+- gerar credencial
+
+keytool -genkey -v -keystore android-profile.keystore -alias android_profile -keyalg RSA -keysize 2048 -validity 1000
+
+- atrelar ao ionic security credential
+
+ionic security credentials android --profile android_profile -s android-profile.keystore -p 0409901 -k android_profile -w 0409901
+
+curl "https://api.ionic.io/push/notifications" -X POST -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJjNjIwODlkOC1jMjdkLTRiMDUtOGI4OS1jMDhkNjcwNjEwNWYifQ.QPeGU9gw9hekoHjGa9ZssFXYz62MarLoF_ukcC1wHxM" -H "Content-Type: application/json" -d @- << EOF
+{
+"tokens":["DEV-216f80e4-8950-4478-803f-a3ee9a383b3e"],
+"profile":"android_profile",
+"notification":{"message":"Hello world!!!"}
+}
+
+- linha de comando produção/desenvolvimento
+
+ionic config set dev_push true/false

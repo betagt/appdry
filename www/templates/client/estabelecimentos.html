@@ -1,0 +1,24 @@
+<ion-view>
+    <ion-nav-title>
+        Rango Delivery - mais produtos
+    </ion-nav-title>
+    <ion-tabs class="tabs-striped tabs-top tabs-background-assertive tabs-color-light ">
+        <ion-tab title="RESTAURANTES" >
+            <ion-view class="padding">
+                <ion-content class="padding ">
+                    <h6 class="title text-center" > 0 Abertos de 3 Restaurantes </h6>
+                    <ion-list>
+                        <ion-item class="item-thumbnail-left" ng-repeat="item in estabelecimentos" ng-include="'templates/client/includeEstabelecimentos/estabelecimento.tpl.html'" ng-click="goView(item)"></ion-item>
+                    </ion-list>
+                </ion-content>
+            </ion-view>
+        </ion-tab>
+        <ion-tab title="PROMOÇÕES">
+            <ion-view class="padding">
+                <ion-content class="padding ">
+                    <h1 class="title">Settings</h1>
+                </ion-content>
+            </ion-view>
+        </ion-tab>
+    </ion-tabs>
+</ion-view>

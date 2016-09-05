@@ -1,0 +1,24 @@
+<ion-view>
+    <ion-nav-bar class="bar-assertive">
+        <ion-nav-title>
+            <h1 class="title">Rango Delivery - Login</h1>
+        </ion-nav-title>
+    </ion-nav-bar>
+    <ion-content class="padding">
+        <form name="form" ng-submit="login()">
+            <div class="list list-inset">
+                <i class="ion-email"></i> E-mail:
+                <label class="item item-input">
+                    <input type="email" placeholder="seu-email@email.com" name="username" ng-model="user.username" required="required">
+                </label>
+            </div>
+            <div class="list list-inset">
+                <i class="ion-locked"></i> E-mail:
+                <label class="item item-input">
+                    <input type="password" placeholder="******" name="password" ng-model="user.password" required="required">
+                </label>
+            </div>
+            <button type="submit" class="button button-full button-assertive ion ion-android-person"> Login</button>
+        </form>
+    </ion-content>
+</ion-view>

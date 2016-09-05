@@ -1,0 +1,38 @@
+<ion-view>
+    <ion-nav-title>
+        Rango Delivery - mais produtos
+    </ion-nav-title>
+    <ion-tabs class="tabs-striped tabs-top tabs-background-assertive tabs-color-light ">
+        <ion-tab title="CEP">
+            <ion-view>
+                <ion-content class="padding ">
+                    <div class="">
+                        <label class="item item-input">
+                            <span class="input-label">
+                                <i class="ion ion-ios-location"></i> CEP :
+                            </span>
+                            <input type="text"  ng-model="location.qtd">
+                        </label>
+                        <button class="padding button button-assertive button-full" ng-click="updateQtd()">
+                            Pesquisar
+                        </button>
+                    </div>
+                </ion-content>
+            </ion-view>
+        </ion-tab>
+        <ion-tab title="ENDEREÇO" >
+            <ion-view class="padding">
+                <ion-content class="padding ">
+                    <h1 class="title">Settings</h1>
+                </ion-content>
+            </ion-view>
+        </ion-tab>
+        <ion-tab title="LOCALIZAÇÃO">
+            <ion-view class="padding">
+                <ion-content class="padding ">
+                    <h1 class="title">Settings</h1>
+                </ion-content>
+            </ion-view>
+        </ion-tab>
+    </ion-tabs>
+</ion-view>

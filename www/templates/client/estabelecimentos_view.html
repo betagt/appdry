@@ -11,9 +11,20 @@
                     </ion-list>
                     <ion-list>
                         <ion-item class="item item-divider">
-                            Candy Bars
+                            <span class="assertive">Candy Bars</span>
                         </ion-item>
-                        <ion-item >teste</ion-item>
+                        <ion-item ng-repeat="produto in item.produtos.data" ng-click="addItem(item)" >
+                            <div class="row">
+                                <div class="col text-left">
+                                    {{produto.name}}<br />
+                                    <p>{{produto.description}}</p>
+                                </div>
+                                <div class="col text-right">
+                                    <span class="balanced padding-right">R${{produto.price}}</span>
+                                    <i class="ion ion-ios-arrow-right"></i>
+                                </div>
+                            </div>
+                        </ion-item>
                     </ion-list>
                 </ion-content>
             </ion-view>

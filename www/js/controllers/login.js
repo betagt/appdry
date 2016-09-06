@@ -25,7 +25,7 @@ angular.module('starter.controllers')
                 })
                 .then(function (data) {
                     UserData.set( data.data);
-                    switch (UserData.get().rule){
+                    switch (UserData.get().role){
                         case 'client':
                             $state.go('client.estabelecimentos');
                             break;

@@ -52,7 +52,7 @@ angular.module('starter').config(
                 controller:'EstabelecimentosCtrl'
             })
             .state('client.estabelecimentos_view',{
-                url:'/estabelecimentos_view',
+                url:'/estabelecimentos_view/:id',
                 templateUrl:'templates/client/estabelecimentos_view.html',
                 controller:'EstabelecimentosViewCtrl'
             });

@@ -1,0 +1,5 @@
+.disable-item{
+    opacity: 0.4;
+    -webkit-filter: grayscale(100%); /* Chrome, Safari, Opera */
+    filter: grayscale(100%);
+}

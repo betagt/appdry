@@ -1,6 +1,6 @@
 angular.module('starter.controllers')
     .controller('EstabelecimentosCtrl',[
-        '$scope','$state','$ionicTabsDelegate','$ionicLoading','UserData','Estabelecimentos',function ($scope,$state, $ionicTabsDelegate,$ionicLoading,UserData,Estabelecimentos) {
+        '$scope','$state','$ionicTabsDelegate','$ionicLoading','UserData','Estabelecimentos', '$ionicPopup',function ($scope,$state, $ionicTabsDelegate,$ionicLoading,UserData,Estabelecimentos, $ionicPopup) {
 
             $scope.selectTabWithIndex = function(index) {
                 $ionicTabsDelegate.select(index);
@@ -10,16 +10,29 @@ angular.module('starter.controllers')
             $ionicLoading.show({
                 template: 'Carregando...'
             });
-            Estabelecimentos.query({include:'endereco,entrega'},function(data){
+            Estabelecimentos.query({id:null,include:'endereco,entrega'},function(data){
                 $scope.estabelecimentos = data.data;
                 $ionicLoading.hide();
             },function (dataError) {
                 $ionicLoading.hide();
             });
             $scope.goView = function (item) {
-                $state.go('client.estabelecimentos_view',{
-                    id:item.id
+                 if (item.power == 1) {
+                    $state.go('client.estabelecimentos_view', {
+                        id: item.id
+                    });
+                     return;
+                 }
+
+                $ionicPopup.alert({
+                    title: 'Adivertência',
+                    template: 'O estabelecimento está fechado no momento'
+                }).then(function () {
+                    $state.go('client.estabelecimentos_view',{
+                        id:item.id
+                    });
                 });
             };
+
 
         }]);

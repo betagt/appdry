@@ -6,9 +6,9 @@
         <ion-tab title="RESTAURANTES" >
             <ion-view class="padding">
                 <ion-content class="padding ">
-                    <h6 class="title text-center" > 0 Abertos de 3 Restaurantes </h6>
+                    <h6 class="title text-center" > 0 Abertos de {{estabelecimentos.length}} Restaurantes </h6>
                     <ion-list>
-                        <ion-item class="item-thumbnail-left" ng-repeat="item in estabelecimentos" ng-include="'templates/client/includeEstabelecimentos/estabelecimento.tpl.html'" ng-click="goView(item)"></ion-item>
+                        <ion-item ng-class="{'disable-item':item.power==2}" class="item-thumbnail-left" ng-repeat="item in estabelecimentos" ng-include="'templates/client/includeEstabelecimentos/estabelecimento.tpl.html'" ng-click="goView(item)"></ion-item>
                     </ion-list>
                 </ion-content>
             </ion-view>
@@ -16,7 +16,7 @@
         <ion-tab title="PROMOÇÕES">
             <ion-view class="padding">
                 <ion-content class="padding ">
-                    <h1 class="title">Settings</h1>
+                    <h6 class="title text-center">Settings</h6>
                 </ion-content>
             </ion-view>
         </ion-tab>

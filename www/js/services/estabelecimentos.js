@@ -3,7 +3,7 @@
  */
 angular.module('starter.services')
     .factory('Estabelecimentos',['$resource','appConfig',function ($resource,appConfig) {
-        return $resource(appConfig.baseUrl+'/api/client/estabelecimentos',{},{
+        return $resource(appConfig.baseUrl+'/api/client/estabelecimentos/:id',{id:'@id'},{
             query:{
                 isArray:false
             }

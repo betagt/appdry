@@ -16,7 +16,7 @@ angular.module('starter.controllers')
                     $scope.$broadcast('scroll.refreshComplete');
                 },function (responseError) {
                     $scope.$broadcast('scroll.refreshComplete');
-                });;
+                });
             }
             function getOrders() {
                return DeliverymanOrder.get({

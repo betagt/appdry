@@ -12,14 +12,15 @@ angular.module('starter').config(
                 url:'/order',
                 templateUrl:'templates/client/order.html',
                 controller:'ClientOrderCtrl'
-            }).state('client.checkout',{
-            cache:false,
-            url:'/checkout',
-            templateUrl:'templates/client/checkout.html',
-            controller:'ClientCheckoutCtrl'
-        })
+            })
+            .state('client.checkout',{
+                cache:false,
+                url:'/checkout/:id',
+                templateUrl:'templates/client/checkout.html',
+                controller:'ClientCheckoutCtrl'
+            })
             .state('client.checkout_item_detail',{
-                url:'/checkout/detail/:index',
+                url:'/checkout/detail/:index/:estabelecimento',
                 templateUrl:'templates/client/checkout_item_detail.html',
                 controller:'ClientCheckoutDetailCtrl'
             })
@@ -55,5 +56,15 @@ angular.module('starter').config(
                 url:'/estabelecimentos_view/:id',
                 templateUrl:'templates/client/estabelecimentos_view.html',
                 controller:'EstabelecimentosViewCtrl'
+            })
+            .state('client.list_local_entrega',{
+                url:'/list_local_entrega',
+                templateUrl:'templates/client/list_local_entrega.html',
+                controller:'ListLocalEntregaCtrl'
+            })
+            .state('client.add_local_entrega',{
+                url:'/add_local_entrega',
+                templateUrl:'templates/client/add_local_entrega.html',
+                controller:'AddLocalEntregaCtrl'
             });
     });

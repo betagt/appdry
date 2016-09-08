@@ -5,10 +5,12 @@ angular.module('starter.controllers')
         '$cart',
         '$stateParams',
         function($scope,$state,$cart,$stateParams){
-            $scope.product = $cart.getItem($stateParams.index);
-
-        $scope.updateQtd = function () {
-            $cart.updateQtd($stateParams.index,$scope.product.qtd);
-            $state.go('client.checkout');
-        };
+            var idEstabelecimento = $stateParams.estabelecimento;
+            $scope.product = $cart.setKey('cart_'+idEstabelecimento).getItem($stateParams.index);
+            $scope.updateQtd = function () {
+                $cart.updateQtd($stateParams.index,$scope.product.qtd);
+                $state.go('client.checkout',{
+                    id:idEstabelecimento
+                });
+            };
     }]);

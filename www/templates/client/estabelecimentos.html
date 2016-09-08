@@ -1,12 +1,13 @@
 <ion-view>
     <ion-nav-title>
-        Rango Delivery - mais produtos
+        <h1 class="title">Rango Delivery</h1>
     </ion-nav-title>
     <ion-tabs class="tabs-striped tabs-top tabs-background-assertive tabs-color-light ">
         <ion-tab title="RESTAURANTES" >
             <ion-view class="padding">
                 <ion-content class="padding ">
-                    <h6 class="title text-center" > 0 Abertos de {{estabelecimentos.length}} Restaurantes </h6>
+                    <ion-refresher pulling-text="Puxe para atualizar..." on-refresh="doRefresh()"></ion-refresher>
+                    <h6 class="title text-center" > {{(estabelecimentos|filter:{power:1}).length}} Abertos de {{estabelecimentos.length}} Restaurantes </h6>
                     <ion-list>
                         <ion-item ng-class="{'disable-item':item.power==2}" class="item-thumbnail-left" ng-repeat="item in estabelecimentos" ng-include="'templates/client/includeEstabelecimentos/estabelecimento.tpl.html'" ng-click="goView(item)"></ion-item>
                     </ion-list>

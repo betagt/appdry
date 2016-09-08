@@ -3,54 +3,87 @@ angular.module('starter.controllers')
         '$scope','$state','$ionicTabsDelegate','$stateParams','$ionicLoading','UserData','Estabelecimentos', '$ionicPopup','$cart',
         function ($scope,$state, $ionicTabsDelegate, $stateParams,$ionicLoading,UserData,Estabelecimentos, $ionicPopup, $cart) {
 
+            var idEstabelecimento = $stateParams.id;
+            var cart = $cart.setKey('cart_'+idEstabelecimento);
+
             $scope.selectTabWithIndex = function(index) {
                 $ionicTabsDelegate.select(index);
             }
-
+            defaultQtd();
             $scope.estabelecimentos = [];
             $ionicLoading.show({
                 template: 'Carregando...'
             });
-            Estabelecimentos.query({id:$stateParams.id,include:'endereco,entrega,produtos'},function(data){
+
+            var estabelecimento = Estabelecimentos.query({id:idEstabelecimento,include:'endereco,entrega,produtos,funcionamentos'}).$promise;
+            estabelecimento.then(function(data){
                 $scope.item = data.data;
+                return Estabelecimentos.estabelecimentobycategory({id:idEstabelecimento}).$promise;
+            }).then(function (data) {
+                $scope.categories = data.data;
                 $ionicLoading.hide();
             },function (dataError) {
                 $ionicLoading.hide();
             });
+
             $scope.addItem = function (item) {
                 item.qtd =1;
                 $cart.addItem(item);
                 $state.go('client.checkout');
             };
-
+            
             $scope.addItem = function (item) {
                 //item.qtd =1;
                 //$cart.addItem(item);
                 //$state.go('client.checkout');
                 var myPopup = $ionicPopup.show({
-                    template: '<input type="password" ng-model="data.wifi">',
-                    title: 'Enter Wi-Fi Password',
-                    subTitle: 'Please use normal things',
+                    templateUrl: 'templates/client/includeEstabelecimentos/formEstabelecimento.html',
+                    title: item.name,
+                    subTitle: item.description+' <b class="balanced">R$'+item.price+'</b>',
                     scope: $scope,
                     buttons: [
-                        { text: 'Cancel' },
+                        { text: 'Cancelar' },
                         {
-                            text: '<b>Save</b>',
-                            type: 'button-positive',
+                            text: '<b>Adicionar</b>',
+                            type: 'button-assertive',
                             onTap: function(e) {
-                                if (!$scope.data.wifi) {
-                                    //don't allow the user to close unless he enters wifi password
-                                    e.preventDefault();
-                                } else {
-                                    return $scope.data.wifi;
-                                }
+                                //console.log(e);
+                                return parseInt($scope.data.qtd);
                             }
                         }
                     ]
                 });
 
                 myPopup.then(function(res) {
-                    console.log('Tapped!', res);
+                    if(res) {
+                        if (parseInt(res) < 1) {
+                            $ionicPopup.alert({
+                                title: 'Adivertência',
+                                template: 'Quantidade invalida!'
+                            });
+                            defaultQtd();
+                            return;
+                        }
+
+                        item.qtd = parseInt(res);
+                        item.observacoes = $scope.data.observacoes;
+                        cart.addItem(item);
+                        $ionicPopup.alert({
+                            title: 'Adivertência',
+                            template: 'Item adcionado ao carrinho'
+                        });
+
+                    }
+                    defaultQtd();
                 });
             };
+            $scope.goCheckout = function () {
+                $state.go('client.checkout',{id:idEstabelecimento});
+            }
+            function defaultQtd() {
+                $scope.data = {
+                    qtd:1,
+                    observacoes:null
+                };
+            }
         }]);

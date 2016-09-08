@@ -5,6 +5,15 @@ angular.module('starter.services')
         if(!cartAux){
             initCart();
         }
+
+        this.setKey = function (addkey) {
+            key = addkey;
+            if(!$localStorage.getObject(key))
+                initCart();
+
+            return this;
+        }
+
         this.clear = function () {
             initCart();
         };
@@ -19,6 +28,7 @@ angular.module('starter.services')
 
         this.addItem = function (item) {
             var cart = this.get(), itemAux, exists=false;
+
             for (var index in cart.items) {
                 itemAux = cart.items[index];
                 if (itemAux.id == item.id) {
@@ -65,7 +75,7 @@ angular.module('starter.services')
             var cart = this.get();
             cart.cupom = {
                 code:null,
-                value:null
+                value:0
             };
             $localStorage.setObject(key,cart);
 
@@ -73,8 +83,12 @@ angular.module('starter.services')
 
         this.getTotalFinal = function () {
             var cart = this.get();
-
             return cart.total -=(cart.cupom.value || 0);
+        }
+
+        this.getSubTotal = function () {
+            var cart = this.get();
+            return getTotal(cart.items);
         }
 
         function calculateSubTotal(item) {
@@ -93,9 +107,10 @@ angular.module('starter.services')
             $localStorage.setObject(key, {
                 items: [],
                 total: 0,
+                taxa: 0,
                 cupom:{
                     code:null,
-                    value:null
+                    value:0
                 }
             });
         }

@@ -16,5 +16,9 @@ angular.module('starter.controllers')
         },function (dataError) {
             $ionicLoading.hide();
         });
-
+        $scope.addItem = function (item) {
+            item.qtd =1;
+            $cart.addItem(item);
+            $state.go('client.checkout');
+        };
     }]);

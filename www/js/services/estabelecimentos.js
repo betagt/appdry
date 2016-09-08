@@ -6,7 +6,11 @@ angular.module('starter.services')
         return $resource(appConfig.baseUrl+'/api/client/estabelecimentos/:id',{id:'@id'},{
             query:{
                 isArray:false
-            }
+            },
+            estabelecimentobycategory:{
+                method:'GET',
+                url:appConfig.baseUrl+'/api/client/estabelecimentos/:id/categories'
+            },
         });
 
     }]);

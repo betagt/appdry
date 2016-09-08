@@ -9,16 +9,28 @@ angular.module('starter.controllers')
         'Cupom',
         '$cordovaBarcodeScanner',
         'User',
-        function ($scope, $state, $cart, ClientOrder, $ionicLoading, $ionicPopup, Cupom, $cordovaBarcodeScanner, User) {
-            User.authenticated({include:'client'},function (data) {
-
-            },function (responseError) {
-
-            });
-            var cart = $cart.get();
+        '$stateParams',
+        'Estabelecimentos',
+        function ($scope, $state, $cart, ClientOrder, $ionicLoading, $ionicPopup, Cupom, $cordovaBarcodeScanner, User, $stateParams, Estabelecimentos) {
+            User.authenticated({include:'client'},function (data) {},function (responseError) {});
+            var idEstabelecimento = $stateParams.id;
+            var cart = $cart.setKey('cart_'+idEstabelecimento).get();
             $scope.cupom = cart.cupom;
             $scope.items = cart.items;
+            $scope.cart = cart;
             $scope.total = $cart.getTotalFinal();
+            $scope.subtotal = $cart.getSubTotal();
+
+            $ionicLoading.show({
+                template: 'Carregando...'
+            });
+
+            Estabelecimentos.query({id:idEstabelecimento,include:'endereco,entrega,produtos,funcionamentos'},function(data){
+                $scope.estabelecimento = data.data;
+                $ionicLoading.hide();
+            },function (responseErro) {
+                $ionicLoading.hide();
+            });
 
             $scope.removeItem = function (i) {
                 $cart.removeItem(i);
@@ -27,11 +39,15 @@ angular.module('starter.controllers')
             };
             $scope.openListProducts = function () {
                 $state.go('client.view_products');
-            }
+            };
             $scope.openProductDetail = function(i){
                 $state.go('client.checkout_item_detail',{
-                    index:i
+                    index:i,
+                    estabelecimento:idEstabelecimento
                 });
+            };
+            $scope.goEntrega = function () {
+                $state.go('client.list_local_entrega');
             };
 
             $scope.save = function () {
@@ -57,6 +73,7 @@ angular.module('starter.controllers')
                 });
 
             };
+
             $scope.readBarCode = function () {
                 $cordovaBarcodeScanner
                     .scan()
@@ -70,11 +87,13 @@ angular.module('starter.controllers')
                         });
                     });
             };
+
             $scope.removeCupom = function () {
                 $cart.removeCupom();
                 $scope.cupom = $cart.get().cupom;
                 $scope.total = $cart.getTotalFinal();
             };
+
 
             function getValueCupom(code){
                 $ionicLoading.show({

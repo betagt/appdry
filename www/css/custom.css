@@ -3,3 +3,23 @@
     -webkit-filter: grayscale(100%); /* Chrome, Safari, Opera */
     filter: grayscale(100%);
 }
+.remove-top-pad-marg{
+    padding-top: 0px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+/* position fixed bottom right*/
+.fixed-bottom-right{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.circle{
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+}
+.force-block{
+    display:block !important;
+}

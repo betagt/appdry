@@ -1,0 +1,28 @@
+<ion-view>
+    <ion-nav-title>
+        <h1 class="title">Rango Delivery</h1>
+    </ion-nav-title>
+    <ion-content class="padding">
+        <ion-list>
+            <ion-item ng-repeat="endereco in enderecos" ng-click="" >
+                <div class="row">
+                    <div class="col text-left">
+                        {{endereco.address}}<br />
+                        <p>{{endereco.description}}</p>
+                    </div>
+                    <div class="col text-right">
+                        <span class="balanced padding-right">R${{produto.price}}</span>
+                        <i class="ion ion-ios-arrow-right"></i>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+    <div class="fixed-bottom-right">
+        <div class="text-right">
+            <button class="button button-balanced circle" ng-click="goAddEndereco()">
+                <i class="ion ion-plus"></i>
+            </button>
+        </div>
+    </div>
+</ion-view>

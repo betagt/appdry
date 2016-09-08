@@ -4,7 +4,8 @@ angular.module('starter.controllers')
         '$state',
         '$ionicLoading',
         'UserData',
-        function($scope,$state,$ionicLoading,UserData){
+        '$ionicNavBarDelegate',
+        function($scope,$state,$ionicLoading,UserData, $ionicNavBarDelegate){
             $scope.user = {
                 name:''
             };

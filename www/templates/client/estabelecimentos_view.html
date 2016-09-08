@@ -1,32 +1,45 @@
 <ion-view>
     <ion-nav-title>
-        Rango Delivery - mais produtos
+        <h1 class="title">{{item.nome}}</h1>
     </ion-nav-title>
     <ion-tabs class="tabs-striped tabs-top tabs-background-assertive tabs-color-light ">
         <ion-tab title="CARDÁPIO" >
             <ion-view class="padding">
                 <ion-content class="padding" >
                     <ion-list>
-                        <ion-item class="item-thumbnail-left item-borderless" ng-include="'templates/client/includeEstabelecimentos/estabelecimento.tpl.html'"></ion-item>
-                    </ion-list>
-                    <ion-list>
-                        <ion-item class="item item-divider">
-                            <span class="assertive">Candy Bars</span>
-                        </ion-item>
-                        <ion-item ng-repeat="produto in item.produtos.data" ng-click="addItem(item)" >
-                            <div class="row">
-                                <div class="col text-left">
-                                    {{produto.name}}<br />
-                                    <p>{{produto.description}}</p>
-                                </div>
-                                <div class="col text-right">
-                                    <span class="balanced padding-right">R${{produto.price}}</span>
-                                    <i class="ion ion-ios-arrow-right"></i>
-                                </div>
-                            </div>
+                        <ion-item class="item-thumbnail-left item-borderless" ng-include="'templates/client/includeEstabelecimentos/estabelecimento.tpl.html'">
+                            <button class="">  </button>
                         </ion-item>
                     </ion-list>
+                    <div class="card remove-top-pad-marg" ng-repeat="categoria in categories">
+                        <div class="item item-divider assertive">
+                            {{categoria.name}}
+                        </div>
+                        <div class="item item-text-wrap">
+                            <ion-list>
+                                <ion-item ng-repeat="produto in categoria.products.data" ng-click="addItem(produto)" >
+                                    <div class="row">
+                                        <div class="col text-left">
+                                            {{produto.name}}<br />
+                                            <p>{{produto.description}}</p>
+                                        </div>
+                                        <div class="col text-right">
+                                            <span class="balanced padding-right">R${{produto.price}}</span>
+                                            <i class="ion ion-ios-arrow-right"></i>
+                                        </div>
+                                    </div>
+                                </ion-item>
+                            </ion-list>
+                        </div>
+                    </div>
                 </ion-content>
+                <div class="fixed-bottom-right">
+                    <div class="text-right">
+                        <button class="button button-assertive circle" ng-click="goCheckout()">
+                            <i class="ion ion-android-cart"></i>
+                        </button>
+                    </div>
+                </div>
             </ion-view>
         </ion-tab>
         <ion-tab title="AVALIAÇÃO">
@@ -39,9 +52,20 @@
         <ion-tab title="INFORMAÇÕES">
             <ion-view class="padding">
                 <ion-content class="padding ">
-                   TESTE
+                    <ion-list>
+                        <ion-item class="item-thumbnail-left item-borderless" ng-include="'templates/client/includeEstabelecimentos/estabelecimento.tpl.html'"></ion-item>
+                    </ion-list>
+                    <ion-list>
+                        <ion-item class="item-divider assertive">
+                            <i class="ion ion-clock"></i> Horários
+                        </ion-item>
+                        <ion-item ng-repeat="funcionamento in item.funcionamentos.data">
+                            {{funcionamento.dia_funcionamento_label}} - {{funcionamento.horario_funcionamento_label}}
+                        </ion-item>
+                    </ion-list>
                 </ion-content>
             </ion-view>
         </ion-tab>
     </ion-tabs>
+
 </ion-view>

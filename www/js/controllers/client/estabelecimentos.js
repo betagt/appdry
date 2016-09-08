@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
     .controller('EstabelecimentosCtrl',[
-        '$scope','$state','$ionicTabsDelegate','$ionicLoading','UserData','Estabelecimentos', '$ionicPopup',function ($scope,$state, $ionicTabsDelegate,$ionicLoading,UserData,Estabelecimentos, $ionicPopup) {
-
+        '$scope','$state','$ionicTabsDelegate','$ionicLoading','UserData','Estabelecimentos', '$ionicPopup','$ionicNavBarDelegate',
+        function ($scope,$state, $ionicTabsDelegate,$ionicLoading,UserData,Estabelecimentos, $ionicPopup, $ionicNavBarDelegate) {
             $scope.selectTabWithIndex = function(index) {
                 $ionicTabsDelegate.select(index);
             }
@@ -10,12 +10,28 @@ angular.module('starter.controllers')
             $ionicLoading.show({
                 template: 'Carregando...'
             });
-            Estabelecimentos.query({id:null,include:'endereco,entrega'},function(data){
+
+            loadEstabelecimentos().then(function (data) {
                 $scope.estabelecimentos = data.data;
+                $scope.$broadcast('scroll.refreshComplete');
                 $ionicLoading.hide();
-            },function (dataError) {
+            },function (responseError) {
+                $scope.$broadcast('scroll.refreshComplete');
                 $ionicLoading.hide();
             });
+            $scope.doRefresh = function () {
+                loadEstabelecimentos().then(function (data) {
+                    $scope.estabelecimentos = data.data;
+                    $scope.$broadcast('scroll.refreshComplete');
+                },function (responseError) {
+                    $scope.$broadcast('scroll.refreshComplete');
+                });
+            };
+
+            function loadEstabelecimentos(){
+                return Estabelecimentos.query({id:null,include:'endereco,entrega'}).$promise;
+            }
+
             $scope.goView = function (item) {
                  if (item.power == 1) {
                     $state.go('client.estabelecimentos_view', {

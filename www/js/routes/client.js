@@ -66,5 +66,10 @@ angular.module('starter').config(
                 url:'/add_local_entrega',
                 templateUrl:'templates/client/add_local_entrega.html',
                 controller:'AddLocalEntregaCtrl'
+            })
+            .state('client.local_entrega_edit',{
+                url:'/local_entrega_edit/:id',
+                templateUrl:'templates/client/local_entrega_edit.html',
+                controller:'LocalEntregaEditCtrl'
             });
     });

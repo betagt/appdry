@@ -1,32 +1,69 @@
-<ion-item class="item item-borderless item-input item-floating-label">
-    <span class="input-label">CEP</span>
-    <input type="number" ng-model="data.zipcode" ng-disabled="buscaCep" placeholder="CEP">
-</ion-item>
-<ion-item class="item item-borderless" ng-click="getCep()" ng-show="!buscaCep">
-    <button class="button button-block button-assertive" ng-click="addSave()">
-        <i class="ion ion-search"></i> Bucas CEP
-    </button>
-</ion-item>
-<div ng-show="buscaCep">
+<form name="addressForm" novalidate="" on-valid-submit="addressSubmit(addressForm)">
     <ion-item class="item item-borderless item-input item-floating-label">
-        <span class="input-label">Endereço</span>
-        <input type="text" ng-model="data.address" placeholder="Endereço">
+        <span class="input-label">
+            <i class="ion ion-pin"></i> CEP *:
+        </span>
+        <input type="number" ng-model="client.zipcode" ng-disabled="buscaCep" placeholder="CEP *:" required>
     </ion-item>
-    <ion-item class="item item-borderless item-input item-floating-label">
-        <span class="input-label">Número</span>
-        <input type="text" ng-model="data.numero"  placeholder="Número">
+    <ion-item class="item item-borderless" ng-click="getCep()" ng-show="!buscaCep">
+        <a class="button button-block button-assertive" ng-click="addSave()">
+            <i class="ion ion-search"></i> Bucas CEP
+        </a>
     </ion-item>
-    <ion-item class="item item-borderless item-input item-floating-label">
-        <span class="input-label">Complemento</span>
-        <input type="text" ng-model="data.complemento" placeholder="Complemento">
-    </ion-item>
-    <ion-item class="item item-borderless item-input item-floating-label">
-        <span class="input-label">Refêrencia</span>
-        <input type="text" ng-model="data.referencia" placeholder="Ponto de refêrencia">
-    </ion-item>
-    <div class="padding">
-        <button class="button button-block button-assertive" ng-click="addSave()">
-            <i class="ion ion-checkmark-round"></i> Cadastrar Endereço
-        </button>
+    <div ng-show="buscaCep">
+        <ion-item class="item item-borderless item-input ">
+            <div class="row row-no-padding">
+                <div class="col col-mr">
+                    <span class="input-label">
+                        <i class="icon ion-compose"></i> Cidade
+                    </span>
+                    <input type="text" ng-model="client.city" ng-disabled="buscaCep" placeholder="Cidade">
+                </div>
+                <div class="col">
+                    <span class="input-label">
+                        <i class="icon ion-compose"></i> Estado
+                    </span>
+                    <input type="text" ng-model="client.state" ng-disabled="buscaCep" placeholder="Estado">
+                </div>
+            </div>
+        </ion-item>
+        <ion-item class="item item-borderless item-input item-floating-label">
+            <span class="input-label">
+                <i class="icon ion-compose"></i> Bairro *:
+            </span>
+            <input type="text" ng-model="client.neighborhood" name="neighborhood" ng-class="{ 'has-errors' : addressForm.neighborhood.$invalid && !addressForm.neighborhood.$pristine, 'no-errors' : addressForm.neighborhood.$valid}" ng-disabled="buscaCep" placeholder="Bairro *:" required>
+        </ion-item>
+        <ion-item class="item item-borderless item-input item-floating-label">
+            <span class="input-label">
+                <i class="icon ion-ios-location"></i> Endereço *:
+            </span>
+            <input type="text"  name="address" ng-model="client.address" placeholder="Endereço *:" required>
+            <i class="icon ion-alert-circled error"> Preencha o Endereço</i>
+        </ion-item>
+        <ion-item class="item item-borderless item-input item-floating-label">
+            <span class="input-label">
+                <i class="ion ion-ios-grid-view-outline"></i> Número *:
+            </span>
+            <input type="text" ng-model="client.number" name="number" placeholder="Número *:" required>
+            <i class="icon ion-alert-circled error"> Preencha o Número</i>
+        </ion-item>
+        <ion-item class="item item-borderless item-input item-floating-label">
+            <span class="input-label">
+                <i class="ion ion-ios-list"></i> Complemento *:
+            </span>
+            <input type="text" ng-model="client.complement" placeholder="Complemento *:" required>
+            <i class="icon ion-alert-circled error"> Preencha o Complemento</i>
+        </ion-item>
+        <ion-item class="item item-borderless item-input item-floating-label">
+            <span class="input-label">
+                <i class="ion ion-ios-location"></i> Refêrencia
+            </span>
+            <input type="text" ng-model="client.reference_point" placeholder="Ponto de refêrencia">
+        </ion-item>
+        <div class="padding">
+            <button type="submit" class="button button-block button-assertive">
+                <i class="ion ion-checkmark-round"></i> Salvar Endereço
+            </button>
+        </div>
     </div>
-</div>
+</form>

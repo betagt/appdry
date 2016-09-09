@@ -1,11 +1,11 @@
 angular.module('starter.controllers')
-    .controller('AddLocalEntregaCtrl',[
+    .controller('LocalEntregaEditCtrl',[
         '$scope', '$stateParams', 'UserAddress', '$ionicLoading', '$state', '$viaCep','$ionicPopup',
         function($scope, $stateParams, UserAddress, $ionicLoading, $state, $viaCep, $ionicPopup){
 
         $scope.enderecos = {};
 
-        $scope.buscaCep = false;
+        $scope.buscaCep = true;
 
         $scope.client = {
                 zipcode:null,
@@ -13,12 +13,21 @@ angular.module('starter.controllers')
                 city:null,
                 state:null
         };
+        $ionicLoading.show({
+            template: 'Carregando...'
+        });
+        UserAddress.first({id:$stateParams.id},function (data) {
+            $scope.client = data.data;
+            $ionicLoading.hide();
+        },function (responseError) {
+            $ionicLoading.hide();
+        });
 
         $scope.addressSubmit = function () {
             $ionicLoading.show({
                 template: 'Salvando...'
             });
-            UserAddress.create({},$scope.client,function (data) {
+            UserAddress.save({id:$stateParams.id},$scope.client,function (data) {
                 $ionicLoading.hide();
                 $ionicPopup.alert({
                     title:'Adivertência',
@@ -30,21 +39,4 @@ angular.module('starter.controllers')
                 $ionicLoading.hide();
             });
         }
-
-        $scope.getCep = function () {
-            $viaCep.getCep($scope.client.zipcode).then(function (data) {
-                    //$scope.client.zipcode = parseInt(data.data.cep.replace('-',''));
-                    $scope.client.address = data.data.logradouro;
-                    $scope.client.city = data.data.localidade;
-                    $scope.client.state = data.data.uf;
-                    $scope.client.neighborhood = data.data.bairro;
-                    $scope.buscaCep = true;
-            },function (responseError) {
-                    $scope.buscaCep = false;
-            });
-        };
-        
-        $scope.goAddEndereco = function () {
-             $state.go('client.add_local_entrega');
-        };
     }]);

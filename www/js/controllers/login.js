@@ -21,7 +21,7 @@ angular.module('starter.controllers')
                     return User.updateDeviceToken({device_token:token}).$promise;
                 })
                 .then(function (data) {
-                    return User.authenticated({include: 'client'}).$promise;
+                    return User.authenticated({include: 'address'}).$promise;
                 })
                 .then(function (data) {
                     UserData.set( data.data);

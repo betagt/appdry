@@ -2,16 +2,22 @@
     <ion-nav-title>
         <h1 class="title">Rango Delivery</h1>
     </ion-nav-title>
-    <ion-content class="padding">
+    <div class="bar bar-subheader">
+        <h2 class="title">Meus Endereços</h2>
+    </div>
+    <ion-content class="padding has-subheader">
         <ion-list>
-            <ion-item ng-repeat="endereco in enderecos" ng-click="" >
+            <ion-item ng-repeat="endereco in enderecos" ng-click="showActionSheet(endereco)">
                 <div class="row">
                     <div class="col text-left">
-                        {{endereco.address}}<br />
-                        <p>{{endereco.description}}</p>
+                        {{endereco.neighborhood}}<br />
+                        <p>
+                            {{endereco.address}} <br>
+                            {{endereco.city}} / {{endereco.state}}
+                        </p>
                     </div>
                     <div class="col text-right">
-                        <span class="balanced padding-right">R${{produto.price}}</span>
+                        <span class="balanced padding-right">{{endereco.zipcode}}</span>
                         <i class="ion ion-ios-arrow-right"></i>
                     </div>
                 </div>

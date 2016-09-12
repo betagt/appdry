@@ -24,6 +24,12 @@ angular.module('starter').config(
                 templateUrl:'templates/client/checkout_item_detail.html',
                 controller:'ClientCheckoutDetailCtrl'
             })
+            .state('client.checkout_review',{
+                cache:false,
+                url:'/checkout_review/:id',
+                templateUrl:'templates/client/checkout_review.html',
+                controller:'ClientCheckoutReviewCtrl'
+            })
             .state('client.checkout_successfull',{
                 cache:false,
                 url:'/checkout/successfull',
@@ -71,5 +77,10 @@ angular.module('starter').config(
                 url:'/local_entrega_edit/:id',
                 templateUrl:'templates/client/local_entrega_edit.html',
                 controller:'LocalEntregaEditCtrl'
+            })
+            .state('client.card_add',{
+                url:'/card_add',
+                templateUrl:'templates/client/card_add.html',
+                controller:'CardAddCtrl'
             });
     });

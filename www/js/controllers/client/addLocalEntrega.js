@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
     .controller('AddLocalEntregaCtrl',[
-        '$scope', '$stateParams', 'UserAddress', '$ionicLoading', '$state', '$viaCep','$ionicPopup',
-        function($scope, $stateParams, UserAddress, $ionicLoading, $state, $viaCep, $ionicPopup){
+        '$scope', '$stateParams', 'UserAddress', '$ionicLoading', '$state', '$viaCep','$ionicPopup','$ionicHistory',
+        function($scope, $stateParams, UserAddress, $ionicLoading, $state, $viaCep, $ionicPopup,$ionicHistory){
 
         $scope.enderecos = {};
 
@@ -24,7 +24,8 @@ angular.module('starter.controllers')
                     title:'Adivertência',
                     template:'Endereço salvo com sucesso!'
                 }).then(function (data) {
-                    $state.go('client.list_local_entrega');
+                    //$state.go('client.list_local_entrega');
+                    $ionicHistory.goBack(-1);
                 });
             },function (responseError) {
                 $ionicLoading.hide();
@@ -42,9 +43,5 @@ angular.module('starter.controllers')
             },function (responseError) {
                     $scope.buscaCep = false;
             });
-        };
-        
-        $scope.goAddEndereco = function () {
-             $state.go('client.add_local_entrega');
         };
     }]);

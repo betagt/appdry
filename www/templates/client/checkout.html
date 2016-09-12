@@ -9,7 +9,6 @@
                 <i class="icon ion-knife"></i>
                  {{estabelecimento.nome}}
             </b>
-            <button class="button button-clear button-icon ion-minus-circled padding-top " ng-show="items.length > 0" ng-click="showDelete = !showDelete" ng-class="{'button-assertive':showDelete,'button-dark':!showDelete}"></button>
         </h2>
     </div>
     <ion-content class="padding has-subheader">
@@ -17,7 +16,7 @@
             <ion-item class="item-divider">
                 <i class="ion ion-android-cart"></i> <b>Carrinho</b>
             </ion-item>
-            <ion-item ng-repeat="produto in items" ng-click="openProductDetail($index)">
+            <ion-item ng-repeat="produto in items" ng-click="showActionSheet($index)">
                 <div class="row">
                     <div class="col text-left">
                         <b>{{produto.qtd}}x {{produto.name}}</b><br />
@@ -28,13 +27,18 @@
                         <i class="ion ion-ios-arrow-right"></i>
                     </div>
                 </div>
-                <ion-delete-button class="ion ion-minus-circled" ng-click="removeItem($index)"></ion-delete-button>
             </ion-item>
             <ion-item class="item-divider">
                 <i class="icon ion-android-car"></i> Endereço de entrega
             </ion-item>
+            <ion-radio ng-model="client.endereco" ng-click="addEndereco(endereco)" required ng-repeat="endereco in enderecos" ng-value="endereco.id">
+                {{endereco.address}}<br />
+                <p>
+                    {{endereco.zipcode}}, {{endereco.number}}, {{endereco.complement}}
+                </p>
+            </ion-radio>
             <ion-item class="text-center">
-                <button class="button button-clear button-dark button-icon ion-plus-circled" ng-click="goEntrega()"> Adcionar Endereço</button>
+                <button class="button button-clear button-dark button-icon ion-plus-circled" ng-click="goAddEndereco()"> Adcionar Endereço</button>
             </ion-item>
             <ion-item class="item-divider">
                 <i class="icon ion-ios-pricetag"></i> Cupom
@@ -53,17 +57,17 @@
                 <h1 class="title assertive">
                     <i class="ion ion-android-cart"></i> Total   <br />
                 </h1>
-                <b>Subtotal</b>: R$ {{subtotal}} <br />
+                <b>Subtotal:</b> R$ {{subtotal}} <br />
                 <b>Taxa de entrega:</b> R$ {{cart.taxa}}<br />
                 <b>Desconto:</b> R$ {{cart.cupom.value}}<br />
                 <span class="balanced">
-                    <b>R$ {{total+cart.taxa}}</b>
+                    <b>R$ {{total}}</b>
                 </span>
             </div>
         </div>
-        <button class="button button-assertive button-full" ng-click="save()"> Finalizar Pedido</button>
+        <!--<button class="button button-assertive button-full" ng-click="save()"> Finalizar Pedido</button>-->
     </ion-content>
-    <div class="fixed-bottom-right">
+    <div class="fixed-bottom-right" ng-show="items.length>0">
         <div class="text-right">
             <button class="button button-assertive circle" ng-click="goPaymentForm()">
                 <i class="ion ion-card"></i>

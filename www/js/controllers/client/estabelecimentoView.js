@@ -1,10 +1,12 @@
 angular.module('starter.controllers')
     .controller('EstabelecimentosViewCtrl',[
-        '$scope','$state','$ionicTabsDelegate','$stateParams','$ionicLoading','UserData','Estabelecimentos', '$ionicPopup','$cart',
-        function ($scope,$state, $ionicTabsDelegate, $stateParams,$ionicLoading,UserData,Estabelecimentos, $ionicPopup, $cart) {
+        '$scope','$state','$ionicTabsDelegate','$stateParams','$ionicLoading','UserData','Estabelecimentos', '$ionicPopup','$cart','Product',
+        function ($scope,$state, $ionicTabsDelegate, $stateParams,$ionicLoading,UserData,Estabelecimentos, $ionicPopup, $cart, Product) {
 
             var idEstabelecimento = $stateParams.id;
             var cart = $cart.setKey('cart_'+idEstabelecimento);
+            $scope.showCartButton = cart.get().items.length >0;
+            $scope.productExtras = null;
 
             $scope.selectTabWithIndex = function(index) {
                 $ionicTabsDelegate.select(index);
@@ -33,49 +35,52 @@ angular.module('starter.controllers')
             };
             
             $scope.addItem = function (item) {
-                //item.qtd =1;
-                //$cart.addItem(item);
-                //$state.go('client.checkout');
-                var myPopup = $ionicPopup.show({
-                    templateUrl: 'templates/client/includeEstabelecimentos/formEstabelecimento.html',
-                    title: item.name,
-                    subTitle: item.description+' <b class="balanced">R$'+item.price+'</b>',
-                    scope: $scope,
-                    buttons: [
-                        { text: 'Cancelar' },
-                        {
-                            text: '<b>Adicionar</b>',
-                            type: 'button-assertive',
-                            onTap: function(e) {
-                                //console.log(e);
-                                return parseInt($scope.data.qtd);
-                            }
-                        }
-                    ]
-                });
 
-                myPopup.then(function(res) {
-                    if(res) {
-                        if (parseInt(res) < 1) {
+                Product.first({id:item.id},function (data) {
+                    $scope.productExtras = data.data.extras.data
+                    var myPopup = $ionicPopup.show({
+                        templateUrl: 'templates/client/includeEstabelecimentos/formEstabelecimento.html',
+                        title: item.name,
+                        subTitle: item.description+' <b class="balanced">R$'+item.price+'</b>',
+                        scope: $scope,
+                        buttons: [
+                            { text: 'Cancelar' },
+                            {
+                                text: '<b>Adicionar</b>',
+                                type: 'button-assertive',
+                                onTap: function(e) {
+                                    //console.log(e);
+                                    return parseInt($scope.data.qtd);
+                                }
+                            }
+                        ]
+                    });
+
+                    myPopup.then(function(res) {
+                        if(res) {
+                            if (parseInt(res) < 1) {
+                                $ionicPopup.alert({
+                                    title: 'Adivertência',
+                                    template: 'Quantidade invalida!'
+                                });
+                                defaultQtd();
+                                return;
+                            }
+
+                            item.qtd = parseInt(res);
+                            item.observacoes = $scope.data.observacoes;
+                            cart.addItem(item);
+                            $scope.showCartButton = cart.get().items.length >0;
                             $ionicPopup.alert({
                                 title: 'Adivertência',
-                                template: 'Quantidade invalida!'
+                                template: 'Item adcionado ao carrinho'
                             });
-                            defaultQtd();
-                            return;
                         }
+                        defaultQtd();
+                    });
+                },function(responseError){});
 
-                        item.qtd = parseInt(res);
-                        item.observacoes = $scope.data.observacoes;
-                        cart.addItem(item);
-                        $ionicPopup.alert({
-                            title: 'Adivertência',
-                            template: 'Item adcionado ao carrinho'
-                        });
 
-                    }
-                    defaultQtd();
-                });
             };
             $scope.goCheckout = function () {
                 $state.go('client.checkout',{id:idEstabelecimento});

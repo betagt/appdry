@@ -1,2 +1,16 @@
-<input type="number" placeholder="Insira a quantidade" value="1" ng-model="data.qtd"><br/>
-<textarea placeholder="Insira as observações" rows="5" ng-model="data.observacoes"></textarea>
+<form name="estabelecimentoForm">
+    <ion-list class="padding-bottom">
+        <ion-item  class="item-input item-select col-mb">
+            <div class="input-label">
+               Teste
+            </div>
+            <select ng-model="checkout.extra" >
+                <option value="">Selecionar</option>
+                <option ng-repeat="(extra, value) in productExtras" value="{{value.extra.data.id}}">{{value.extra.data.name}} R${{value.price}}</option>
+            </select>
+        </ion-item>
+    </ion-list>
+
+    <input type="number" placeholder="Insira a quantidade" value="1" ng-model="data.qtd"><br/>
+    <textarea placeholder="Insira as observações" rows="5" ng-model="data.observacoes"></textarea>
+</form>

@@ -8,7 +8,6 @@ angular.module('starter.services')
                 isArray:false
             }
         });
-
     }])
     .factory('DeliverymanOrder',['$resource','appConfig',function ($resource, appConfig) {
         var url = appConfig.baseUrl+'/api/deliveryman/order/:id';
@@ -23,7 +22,6 @@ angular.module('starter.services')
             geo:{
                 method:'POST',
                 url:url+'/geo'
-
             }
         });
 

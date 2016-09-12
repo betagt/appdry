@@ -26,6 +26,9 @@
 .col-mr{
     margin-right: 10px !important;
 }
+.col-mb{
+    margin-bottom: 10px !important;
+}
 form i.icon.error {
     color: #ef4e3a; }
 

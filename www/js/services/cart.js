@@ -83,6 +83,7 @@ angular.module('starter.services')
 
         this.getTotalFinal = function () {
             var cart = this.get();
+            cart.total += cart.taxa;
             return cart.total -=(cart.cupom.value || 0);
         }
 
@@ -90,7 +91,13 @@ angular.module('starter.services')
             var cart = this.get();
             return getTotal(cart.items);
         }
-
+        
+        this.setAddressDelivery = function (address) {
+            var cart = this.get();
+            cart.delivery_address = address;
+            $localStorage.setObject(key,cart);
+        }
+        
         function calculateSubTotal(item) {
             return item.price * item.qtd;
         }
@@ -106,6 +113,7 @@ angular.module('starter.services')
         function initCart(){
             $localStorage.setObject(key, {
                 items: [],
+                delivery_address:{},
                 total: 0,
                 taxa: 0,
                 cupom:{

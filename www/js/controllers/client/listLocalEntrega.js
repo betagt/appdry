@@ -8,7 +8,16 @@ angular.module('starter.controllers')
         '$ionicLoading',
         function($scope, $stateParams,$state, UserAddress, $ionicActionSheet, $ionicLoading){
         $scope.enderecos = {};
-        updateList();
+
+        $ionicLoading.show({
+            template:'Carregando...'
+        });
+        updateList().then(function (data) {
+            $scope.enderecos = data.data;
+            $ionicLoading.hide();
+        },function () {
+            $ionicLoading.hide();
+        });
         $scope.showActionSheet = function (address) {
                 $ionicActionSheet.show({
                         buttons:[
@@ -22,29 +31,28 @@ angular.module('starter.controllers')
                                 switch (index){
                                         case 0:
                                                 $state.go('client.local_entrega_edit',{id:address.id});
-                                                break;
+                                        break;
                                         case 1:
-                                                UserAddress.remove({id:address.id},function (data) {
-                                                        $ionicActionSheet.close();
-                                                        updateList();
-                                                },function (responseError) {
-
+                                                $ionicLoading.show({
+                                                    template:'Carregando...'
                                                 });
-                                                break;
+                                                var addressAjax = UserAddress.remove({id:address.id}).$promise;
+                                                addressAjax.then(function (data) {
+                                                    return updateList();
+                                                }).then(function (data) {
+                                                    $scope.enderecos = data.data;
+                                                    $ionicLoading.hide();
+                                                },function () {
+                                                    $ionicLoading.hide();
+                                                });
+                                                return true;
+                                        break;
                                 }
                         }
                 });
         }
         function updateList(){
-                $ionicLoading.show({
-                        template:'Carregando...'
-                });
-                UserAddress.query(null,function (data) {
-                        $scope.enderecos = data.data;
-                        $ionicLoading.hide();
-                },function () {
-                        $ionicLoading.hide();
-                });
+                return UserAddress.query(null).$promise;
         }
         $scope.goAddEndereco = function () {
              $state.go('client.add_local_entrega');

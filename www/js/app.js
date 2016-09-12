@@ -7,21 +7,15 @@ angular.module('starter.controllers',[]);
 angular.module('starter.services',[]);
 angular.module('starter.filters',[]);
 angular.module('starter', [
-  'ionic',
-  'starter.controllers',
-  'starter.services',
-  'starter.filters',
-  'angular-oauth2',
-  'ngResource',
-  'ngCordova',
-  'uiGmapgoogle-maps',
+  'ionic',  'starter.controllers',  'starter.services',  'starter.filters',  'angular-oauth2',  'ngResource',  'ngCordova',  'uiGmapgoogle-maps',
   'pusher-angular'
 ])
     .constant('appConfig',{
-      baseUrl:'http://localhost:8000',
-      pusherKey:'5af096247925712d9f40'
+      baseUrl:'http://10.10.10.15:8000',
+      pusherKey:'5af096247925712d9f40',
+      db:null
     })
-    .run(function ($ionicPlatform,$window,appConfig,$localStorage,$ionicPopup) {
+    .run(function ($ionicPlatform,$window,appConfig,$localStorage,$ionicPopup,$cordovaSQLite,$ionicHistory) {
       $window.client = new Pusher(appConfig.pusherKey);
       $ionicPlatform.ready(function () {
         if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -37,6 +31,29 @@ angular.module('starter', [
         if (window.StatusBar) {
           StatusBar.styleDefault();
         }
+          appConfig.db = $cordovaSQLite.openDB({ name: "delivery.db", iosDatabaseLocation:'default'});
+          //IOS
+          //appConfig.db = window.sqlitePlugin.openDatabase({ name: "testDB.db", location: 2, createFromLocation: 1}); ;
+
+          $cordovaSQLite.execute(appConfig.db, "CREATE TABLE IF NOT EXISTS " +
+              "card (" +
+              "id integer primary key, " +
+              "user_id integer, " +
+              "nome varchar(80), " +
+              "cpf varchar(80), " +
+              "cartao_numero varchar(80), " +
+              "mes varchar(80), " +
+              "ano varchar(80), " +
+              "cidade varchar(80), " +
+              "estado varchar(80), " +
+              "endereco varchar(80), " +
+              "numero varchar(80), " +
+              "complemento varchar(80), " +
+              "bairro varchar(80), " +
+              "cep varchar(80)" +
+              ")");
+
+          //$cordovaSQLite.deleteDB({ name: "delivery.db", iosDatabaseLocation:'default'});
         Ionic.io();
         var push = new Ionic.Push({
           debug:true,
@@ -51,6 +68,37 @@ angular.module('starter', [
           $localStorage.set('device_token',token.token);
         });
       });
+        $ionicPlatform.registerBackButtonAction(function(e) {
+            e.preventDefault();
+            function showConfirm() {
+                var confirmPopup = $ionicPopup.show({
+                    title : 'Sair do Rango Delivery?',
+                    template : 'Tem certeza de que deseja sair do Rango Delivery?',
+                    buttons : [{
+                        text : 'Cancelar',
+                        type : 'button-assertive button-outline',
+                    }, {
+                        text : 'Sair',
+                        type : 'button-assertive',
+                        onTap : function() {
+                            ionic.Platform.exitApp();
+                        }
+                    }]
+                });
+            };
+            console.log($ionicHistory.backView());
+            // Is there a page to go back to?
+            if ($ionicHistory.backView()) {
+                // Go back in history
+                $ionicHistory.backView().go();
+            } else {
+                // This is the last page: Show confirmation popup
+                showConfirm();
+            }
+
+            return false;
+        }, 101);
+
     }).config(function ($stateProvider,$urlRouterProvider,OAuthProvider,OAuthTokenProvider,appConfig,$provide) {
   OAuthProvider.configure({
     baseUrl: appConfig.baseUrl,

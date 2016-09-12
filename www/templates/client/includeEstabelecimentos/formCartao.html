@@ -1,0 +1,118 @@
+<form name="cartaoForm" novalidate="" on-valid-submit="cartaoSubmit(cartaoForm)">
+    <ion-item class="item item-borderless item-input item-stacked-label">
+        <span class="input-label">
+            <i class="ion ion-person"></i> Nome do titular (igual no cartão): *
+        </span>
+        <input type="text" ng-model="card.nome" placeholder="Nome do titular" required>
+        <i class="icon ion-alert-circled error"> Preencha o Nome do titular</i>
+    </ion-item>
+    <ion-item class="item item-borderless item-input item-stacked-label">
+        <span class="input-label">
+            <i class="icon ion-person"></i> CPF do titular do cartão: *
+        </span>
+        <input type="text" ng-model="card.cpf" placeholder="CPF" required>
+        <i class="icon ion-alert-circled error"> Preencha o CPF</i>
+    </ion-item>
+    <ion-item class="item item-borderless item-input item-stacked-label">
+        <span class="input-label">
+            <i class="icon ion-compose"></i> Número do cartão: *
+        </span>
+        <input type="text" ng-model="card.cartao_numero" placeholder="0000 0000 0000 0000" required>
+        <i class="icon ion-alert-circled error"> Preencha o Número do cartão</i>
+    </ion-item>
+    <ion-item class="item-divider">
+        <i class="ion ion-calendar"></i> Validade do cartão
+    </ion-item>
+    <ion-item class="item item-borderless item-input ">
+        <div class="row row-no-padding">
+            <div class="col col-mr">
+                    <span class="input-label">
+                        <i class="icon ion-compose"></i> Mês
+                    </span>
+                <select ng-model="card.mes" ng-required="true">
+                    <option value="" selected> 00</option>
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select>
+            </div>
+            <div class="col">
+                <span class="input-label">
+                    <i class="icon ion-compose"></i> Ano
+                </span>
+                <select ng-options="item as item for item in yearArray" ng-model="card.ano" ng-change="changeInYear()"  ng-required="true">
+                    <option value="">0000</option>
+                </select>
+            </div>
+        </div>
+    </ion-item>
+    <ion-item class="item-divider">
+        <i class="ion ion-calendar"></i> Endereço completo de cobrança:
+    </ion-item>
+    <ion-item class="item item-borderless item-input item-stacked-label">
+        <div class="row row-no-padding">
+            <div class="col col-mr">
+                    <span class="input-label">
+                        <i class="icon ion-compose"></i> Cidade: *
+                    </span>
+                <input type="text" ng-model="card.cidade" placeholder="Cidade" required>
+                <i class="icon ion-alert-circled error"> Preencha a Cidade</i>
+            </div>
+            <div class="col">
+                    <span class="input-label">
+                        <i class="icon ion-compose"></i> Estado: *
+                    </span>
+                <input type="text" ng-model="card.estado"  placeholder="Estado" required>
+                <i class="icon ion-alert-circled error"> Preencha o Estado</i>
+            </div>
+        </div>
+    </ion-item>
+    <ion-item class="item item-borderless item-input item-stacked-label">
+        <span class="input-label">
+            <i class="icon ion-ios-location"></i> Endereço de cobraça *:
+        </span>
+        <input type="text" ng-model="card.endereco" name="endereco" placeholder="Endereço" required>
+        <i class="icon ion-alert-circled error"> Preencha o Endereço de cobrança</i>
+    </ion-item>
+    <ion-item class="item item-borderless item-input item-stacked-label">
+        <span class="input-label">
+            <i class="icon ion-ios-grid-view-outline"></i> Número *:
+        </span>
+        <input type="text"  name="address" ng-model="card.numero" placeholder="Número" required>
+        <i class="icon ion-alert-circled error"> Preencha o número</i>
+    </ion-item>
+    <ion-item class="item item-borderless item-input item-stacked-label">
+        <span class="input-label">
+            <i class="ion ion-ios-list"></i> Complemento:
+        </span>
+        <input type="text" ng-model="card.complemento" placeholder="Complemento">
+    </ion-item>
+    <ion-item class="item item-borderless item-input item-stacked-label">
+        <span class="input-label">
+            <i class="ion ion-ios-location"></i> Bairro: *
+        </span>
+        <input type="text" ng-model="card.bairro" placeholder="Bairro" required>
+        <i class="icon ion-alert-circled error"> Preencha o Bairro</i>
+    </ion-item>
+    <ion-item class="item item-borderless item-input item-stacked-label">
+        <span class="input-label">
+            <i class="ion ion-ios-location"></i> CEP: *
+        </span>
+        <input type="text" ng-model="card.cep" placeholder="CEP" required>
+        <i class="icon ion-alert-circled error"> Preencha o CEP</i>
+    </ion-item>
+    <div class="padding">
+        <button type="submit" class="button button-block button-assertive">
+            <i class="ion ion-checkmark-round"></i> Salvar Cartão
+        </button>
+    </div>
+</form>

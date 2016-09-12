@@ -14,6 +14,10 @@ angular.module('starter.services')
             updateDeviceToken:{
                 method:'PATCH',
                 url:appConfig.baseUrl+'/api/device_token'
+            },
+            updateFone:{
+                method:'PATCH',
+                url:appConfig.baseUrl+'/api/users/updatefone'
             }
         });
 

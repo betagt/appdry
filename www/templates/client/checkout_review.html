@@ -1,0 +1,34 @@
+<ion-view>
+    <ion-nav-title>
+        <h1 class="title">Pagar meu Rango</h1>
+    </ion-nav-title>
+    <ion-content class="padding">
+        <div class="card">
+            <div class="item item-text-wrap">
+                <b><i class="ion ion-pound"></i> Pedido:</b> #{{order.id}} <br />
+                <b><i class="ion ion-android-cart"></i> Total:</b> R$ {{order.total}} <br />
+                <b><i class="ion ion-compose"></i> Estabelecimento:</b> {{order.estabelecimento.data.nome}} <br />
+                <b><i class="ion ion-location"></i> Endereço de entrega:</b> {{order.endereco.address}} - <b>Nº</b> {{order.endereco.number}}    / {{order.endereco.neighborhood}} <br />
+            </div>
+        </div>
+        <ion-list>
+            <ion-item class="item-divider">
+                <i class="icon ion-card"></i> Selecione/cadastre cartão de crédito:
+            </ion-item>
+            <ion-radio ng-model="cards.select" ng-click="selectedCard(cards)" required ng-repeat="card in cards" ng-value="cards.id">
+                {{card.cartao_numero}}<br />
+            </ion-radio>
+            <ion-item class="text-center">
+                <button class="button button-clear button-dark button-icon ion-plus-circled" ng-click="goAddCard()"> Cadastrar Cartão de crédito no aparelho</button>
+            </ion-item>
+        </ion-list>
+        <div class="card">
+            <div class="item item-text-wrap">
+                Para concluir a compra cadastre um novo cartão de crédito. ele ficará armazenado de forma segura neste aparelho para ser ultilizado em suas compras.
+            </div>
+        </div>
+        <button class="button button-assertive button-full" ng-click="save()">
+            <i class="ion ion-cash"></i> Pagar
+        </button>
+    </ion-content>
+</ion-view>

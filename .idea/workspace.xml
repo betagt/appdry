@@ -2,43 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="59363bf4-8041-470a-a6db-f8d9c6cdd7aa" name="Default" comment="modulo de cadastro de endereços">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/database/delivery.db" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/js/controllers/client/cardAdd.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/js/controllers/client/checkoutReview.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/js/services/cardDb.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/templates/client/card_add.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/templates/client/checkout_review.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/templates/client/includeEstabelecimentos/formCartao.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/lib/angular/angular.min.js.gzip" afterPath="$PROJECT_DIR$/www/lib/angular/angular.min.js.gzip" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/js/services/exitPage.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/appdelivery.iml" afterPath="$PROJECT_DIR$/.idea/appdelivery.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/css/custom.css" afterPath="$PROJECT_DIR$/www/css/custom.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/index.html" afterPath="$PROJECT_DIR$/www/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/app.js" afterPath="$PROJECT_DIR$/www/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers/client/addLocalEntrega.js" afterPath="$PROJECT_DIR$/www/js/controllers/client/addLocalEntrega.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers/client/checkout.js" afterPath="$PROJECT_DIR$/www/js/controllers/client/checkout.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers/client/estabelecimentoView.js" afterPath="$PROJECT_DIR$/www/js/controllers/client/estabelecimentoView.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers/client/listLocalEntrega.js" afterPath="$PROJECT_DIR$/www/js/controllers/client/listLocalEntrega.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/routes/client.js" afterPath="$PROJECT_DIR$/www/js/routes/client.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/services/cart.js" afterPath="$PROJECT_DIR$/www/js/services/cart.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/services/order.js" afterPath="$PROJECT_DIR$/www/js/services/order.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/services/product.js" afterPath="$PROJECT_DIR$/www/js/services/product.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/services/user.js" afterPath="$PROJECT_DIR$/www/js/services/user.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/lib/angular/.bower.json" afterPath="$PROJECT_DIR$/www/lib/angular/.bower.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/lib/angular/README.md" afterPath="$PROJECT_DIR$/www/lib/angular/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/lib/angular/angular-csp.css" afterPath="$PROJECT_DIR$/www/lib/angular/angular-csp.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/lib/angular/angular.js" afterPath="$PROJECT_DIR$/www/lib/angular/angular.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/lib/angular/angular.min.js" afterPath="$PROJECT_DIR$/www/lib/angular/angular.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/lib/angular/angular.min.js.map" afterPath="$PROJECT_DIR$/www/lib/angular/angular.min.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/lib/angular/bower.json" afterPath="$PROJECT_DIR$/www/lib/angular/bower.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/lib/angular/package.json" afterPath="$PROJECT_DIR$/www/lib/angular/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/client/checkout.html" afterPath="$PROJECT_DIR$/www/templates/client/checkout.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/client/estabelecimentos_view.html" afterPath="$PROJECT_DIR$/www/templates/client/estabelecimentos_view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/client/includeEstabelecimentos/estabelecimento.tpl.html" afterPath="$PROJECT_DIR$/www/templates/client/includeEstabelecimentos/estabelecimento.tpl.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/client/includeEstabelecimentos/formEstabelecimento.html" afterPath="$PROJECT_DIR$/www/templates/client/includeEstabelecimentos/formEstabelecimento.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/client/menu.html" afterPath="$PROJECT_DIR$/www/templates/client/menu.html" />
     </list>
     <ignored path="appdelivery.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -69,11 +35,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="checkoutReview.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="checkoutReview.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/controllers/client/checkoutReview.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4">
-              <caret line="2" column="44" selection-start-line="2" selection-start-column="44" selection-end-line="2" selection-end-column="44" />
+            <state relative-caret-position="340">
+              <caret line="20" column="62" selection-start-line="20" selection-start-column="62" selection-end-line="20" selection-end-column="62" />
               <folding />
             </state>
           </provider>
@@ -82,8 +48,18 @@
       <file leaf-file-name="exitPage.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/services/exitPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-152">
-              <caret line="0" column="33" selection-start-line="0" selection-start-column="33" selection-end-line="0" selection-end-column="33" />
+            <state relative-caret-position="221">
+              <caret line="13" column="10" selection-start-line="13" selection-start-column="10" selection-end-line="13" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -579,7 +555,7 @@
       <workItem from="1473510662970" duration="2481000" />
       <workItem from="1473513370552" duration="28222000" />
       <workItem from="1473679539076" duration="19465000" />
-      <workItem from="1473708904909" duration="2110000" />
+      <workItem from="1473708904909" duration="2481000" />
     </task>
     <task id="LOCAL-00001" summary="novo packege">
       <created>1473354526633</created>
@@ -595,11 +571,18 @@
       <option name="project" value="LOCAL" />
       <updated>1473383004721</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="modulo de cadastro de endereços">
+      <created>1473711205145</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1473711205145</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="190082000" />
+    <option name="totallyTimeSpent" value="190453000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="32" width="1382" height="744" extended-state="6" />
@@ -885,6 +868,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="40" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -899,6 +883,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="612">
           <caret line="36" column="52" selection-start-line="36" selection-start-column="52" selection-end-line="36" selection-end-column="52" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -921,6 +906,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="59" selection-start-line="8" selection-start-column="59" selection-end-line="8" selection-end-column="59" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -989,26 +975,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/controllers/client/checkoutReview.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="62" selection-start-line="20" selection-start-column="62" selection-end-line="20" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/services/exitPage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-152">
-          <caret line="0" column="33" selection-start-line="0" selection-start-column="33" selection-end-line="0" selection-end-column="33" />
+        <state relative-caret-position="221">
+          <caret line="13" column="10" selection-start-line="13" selection-start-column="10" selection-end-line="13" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/js/controllers/client/checkoutReview.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4">
-          <caret line="2" column="44" selection-start-line="2" selection-start-column="44" selection-end-line="2" selection-end-column="44" />
+        <state relative-caret-position="119">
+          <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
           <folding />
         </state>
       </provider>

@@ -82,5 +82,11 @@ angular.module('starter').config(
                 url:'/card_add',
                 templateUrl:'templates/client/card_add.html',
                 controller:'CardAddCtrl'
+            })
+            .state('client.user_edit',{
+                cache:false,
+                url:'/user_edit',
+                templateUrl:'templates/client/user_edit.html',
+                controller:'UserEditCtrl'
             });
     });

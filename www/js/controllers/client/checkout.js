@@ -109,7 +109,7 @@ angular.module('starter.controllers')
                                 return ClientOrder.save({id:null},o).$promise;
                             }).then(function (data) {
                                 $ionicLoading.hide();
-                                //$cart.clear();
+                                $cart.clear();
                                 $state.go('client.checkout_review',{id:data.data.id});
                             },function () {
                                 $ionicLoading.hide();
@@ -122,30 +122,6 @@ angular.module('starter.controllers')
                     }
                 });
             };
-
-            /*$scope.save = function () {
-                $ionicLoading.show({
-                    template: 'Salvando...'
-                });
-                var o = {items:angular.copy($scope.items)};
-                angular.forEach(o.items, function (item) {
-                    item.product_id = item.id;
-                });
-                if($scope.cupom.value){
-                    o.cupom_code = $scope.cupom.code;
-                }
-                ClientOrder.save({id:null},o,function (data) {
-                    $ionicLoading.hide();
-                    $state.go('client.checkout_successfull');
-                },function (responseError) {
-                    $ionicLoading.hide();
-                    $ionicPopup.alert({
-                        title:'Adivertência',
-                        template:'Erro ao salvar Pedido!'
-                    });
-                });
-
-            };*/
 
             $scope.readBarCode = function () {
                 $cordovaBarcodeScanner

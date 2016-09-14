@@ -8,10 +8,10 @@ angular.module('starter.services',[]);
 angular.module('starter.filters',[]);
 angular.module('starter', [
   'ionic',  'starter.controllers',  'starter.services',  'starter.filters',  'angular-oauth2',  'ngResource',  'ngCordova',  'uiGmapgoogle-maps',
-  'pusher-angular'
+  'pusher-angular', 'ionic-datepicker',
 ])
     .constant('appConfig',{
-      baseUrl:'http://10.10.10.15:8000',
+      baseUrl:'http://192.168.10.176:8000',
       pusherKey:'5af096247925712d9f40',
       db:null
     })
@@ -31,6 +31,7 @@ angular.module('starter', [
         if (window.StatusBar) {
           StatusBar.styleDefault();
         }
+
           appConfig.db = $cordovaSQLite.openDB({ name: "delivery.db", iosDatabaseLocation:'default'});
           //IOS
           //appConfig.db = window.sqlitePlugin.openDatabase({ name: "testDB.db", location: 2, createFromLocation: 1}); ;
@@ -99,24 +100,43 @@ angular.module('starter', [
             return false;
         }, 101);
 
-    }).config(function ($stateProvider,$urlRouterProvider,OAuthProvider,OAuthTokenProvider,appConfig,$provide) {
-  OAuthProvider.configure({
-    baseUrl: appConfig.baseUrl,
-    clientId: 'appid01',
-    clientSecret: 'secret', // optional
-    grantPath: '/oauth/access_token'
-  });
-  OAuthTokenProvider.configure({
-    name: 'token',
-    options: {
-      secure: false
-    }
-  });
-  $stateProvider.state('login',{
-    url:'/login',
-    templateUrl:'templates/login.html',
-    controller:'LoginCtrl'
-  })
+    }).config(function ($stateProvider,$urlRouterProvider,OAuthProvider,OAuthTokenProvider,appConfig,$provide,ionicDatePickerProvider) {
+
+    var datePickerObj = {
+        inputDate: new Date(),
+        setLabel: 'Selecionar',
+        todayLabel: 'Hoje',
+        closeLabel: 'Fechar',
+        mondayFirst: false,
+        weeksList: ["D", "S", "T", "Q", "Q", "S", "S"],
+        monthsList: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+        defaultNames: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novenbro", "Dezembro"],
+        templateType: 'popup',
+        from: new Date(2012, 8, 1),
+        to: new Date(2018, 8, 1),
+        showTodayButton: true,
+        dateFormat: 'dd MMMM yyyy',
+        closeOnSelect: false,
+        disableWeekdays: []
+    };
+    ionicDatePickerProvider.configDatePicker(datePickerObj);
+      OAuthProvider.configure({
+        baseUrl: appConfig.baseUrl,
+        clientId: 'appid01',
+        clientSecret: 'secret', // optional
+        grantPath: '/oauth/access_token'
+      });
+      OAuthTokenProvider.configure({
+        name: 'token',
+        options: {
+          secure: false
+        }
+      });
+      $stateProvider.state('login',{
+        url:'/login',
+        templateUrl:'templates/login.html',
+        controller:'LoginCtrl'
+      })
       .state('home',{
         url:'/home',
         templateUrl:'templates/home.html',

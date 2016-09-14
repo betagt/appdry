@@ -17,6 +17,7 @@
     "ngCordova": "^0.1.27-alpha",
     "pusher-websocket-iso": "pusher#^3.2.1",
     "pusher": "3.0.0",
-    "pusher-angular": "0.1.8"
+    "pusher-angular": "0.1.8",
+    "ionic-datepicker": "^1.2.1"
   }
 }

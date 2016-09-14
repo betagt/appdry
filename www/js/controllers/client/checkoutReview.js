@@ -8,7 +8,7 @@ angular.module('starter.controllers')
             $ionicLoading.show({
                 template: 'Carregando...'
             });
-            $scope.cards = cardDb.findAll();
+            //$scope.cards = cardDb.findAll();
             ClientOrder.query({id:idOrder,include:'cupom,items,client,estabelecimento,endereco'},function (data) {
                 $scope.order = data.data;
                 $ionicLoading.hide();
@@ -31,9 +31,11 @@ angular.module('starter.controllers')
                     }]
                 });
             });
+
             $scope.goAddCard = function () {
                 $state.go('client.card_add');
             };
+
             $scope.payOrder = function () {
                 //implementar...
                 $state.go('client.checkout_successfull');

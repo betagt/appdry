@@ -3,6 +3,9 @@
     -webkit-filter: grayscale(100%); /* Chrome, Safari, Opera */
     filter: grayscale(100%);
 }
+.border-remove{
+    border: 0px !important;
+}
 .remove-top-pad-marg{
     padding-top: 0px;
     margin-top: 0;

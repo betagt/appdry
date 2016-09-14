@@ -1,0 +1,19 @@
+<ion-view>
+    <ion-nav-bar class="bar-assertive">
+        <ion-nav-title>
+            <h1 class="title">Recuperar senha</h1>
+        </ion-nav-title>
+        <ion-nav-back-button side="right" class="button-icon ion-arrow-left-c"></ion-nav-back-button>
+    </ion-nav-bar>
+    <ion-content class="padding">
+        <form name="form" ng-submit="login()">
+            <div class="list list-inset">
+                <i class="ion-email"></i> E-mail:
+                <label class="item item-input">
+                    <input type="email" placeholder="seu-email@email.com" name="email" ng-model="email" required="required">
+                </label>
+            </div>
+            <button type="submit" class="button button-full button-assertive ion ion-android-person"> Enviar</button>
+        </form>
+    </ion-content>
+</ion-view>

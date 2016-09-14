@@ -20,5 +20,17 @@ angular.module('starter').config(
             url:'/guest-location',
             templateUrl:'templates/guest/guest_location.html',
             controller:'GuestLocationCtrl'
+        })
+        .state('remember_pass',{
+            cache:false,
+            url:'/remember_pass',
+            templateUrl:'templates/remember_pass.html',
+            controller:'RememberPassCtrl'
+        })
+        .state('user_add',{
+            cache:false,
+            url:'/user_add',
+            templateUrl:'templates/user_add.html',
+            controller:'UserAddCtrl'
         });
     });

@@ -8,10 +8,10 @@ angular.module('starter.services',[]);
 angular.module('starter.filters',[]);
 angular.module('starter', [
   'ionic',  'starter.controllers',  'starter.services',  'starter.filters',  'angular-oauth2',  'ngResource',  'ngCordova',  'uiGmapgoogle-maps',
-  'pusher-angular', 'ionic-datepicker',
+  'pusher-angular', 'ionic-datepicker','ionic.rating'
 ])
     .constant('appConfig',{
-      baseUrl:'http://192.168.10.176:8000',
+      baseUrl:'http://localhost:8000',
       pusherKey:'5af096247925712d9f40',
       db:null
     })

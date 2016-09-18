@@ -1,30 +1,52 @@
 <ion-view>
     <ion-nav-title>
-        Top Mais Delivery - Pedido
+       <h1 class="title">Detalhes do Rango</h1>
     </ion-nav-title>
-    <div class="bar bar-subheader">
-        <h2 class="title">
-            Pedido: #{{order.id}} Total: R$ {{order.total}}
-        </h2>
-    </div>
-    <ion-content  class="padding has-subheader">
+    <ion-content  class="padding">
         <ion-list>
-            <div class="item item-divider">
-                Data da Compra {{order.created_at.date|limitTo:10|date:'dd/MM/yyyy'}}
-            </div>
-            <ion-item ng-repeat="item in order.items.data">
-                <h2 class="">
-                    {{item.product.data.name}}
-                </h2>
-                <div class="row">
-                    <div class="col">
-                        QTD: {{item.qtd}} <br />
-                        <i class="ion ion-cash"> {{item.price}}</i>
-                    </div>
-                    <div class="col">
-                        <i class="ion ion-social-usd"> {{item.qtd* item.price}}</i>
-                    </div>
+            <ion-item  class="item-thumbnail-left" ng-include="'templates/client/includeEstabelecimentos/estabelecimento.tpl.html'"></ion-item>
+            <ion-item class="item-divider">
+                <b>Duvidas?</b>
+                <p>Entre em contato diretamente com o <br />estabelecimento.</p>
+                <a ng-href="tel:{{item.telefone}}" class="button button-balanced circle right-position">
+                    <i class="icon ion-ios-telephone"></i>
+                </a>
+            </ion-item>
+            <ion-item class="remove-padding">
+                <div class="row padding" >
+                    <div class="col"><b>Pedido nº:</b> {{order.id}}</div>
+                    <div class="col text-right"> <b>Realizado em:</b> {{order.created_at.date|dateTimeFormat:'dd/MM/yy'}}</div>
                 </div>
+            </ion-item>
+            <ion-item>
+                <div class="row remove-padding" ng-repeat="product in order.items.data">
+                    <div class="col"><b>{{product.qtd}}x</b> {{product.product.data.name}}</div>
+                    <div class="col text-right"> R${{product.qtd * product.price}}</div>
+                </div>
+            </ion-item>
+            <ion-item>
+                <b>Endereço de entrega</b>
+                <p>
+                    {{order.endereco.address}}, {{order.endereco.neighborhood}}, Nº{{order.endereco.number}}
+                </p>
+            </ion-item>
+            <ion-item >
+                <div class="row">
+                    <div class="col"><b>Subtotal:</b> </div>
+                    <div class="col text-right">  R${{order.items.data|arraySum:'price'}}</div>
+                </div>
+                <div class="row">
+                    <div class="col"><b>Taxas:</b> </div>
+                    <div class="col text-right">  R${{order.taxa_entrega}}</div>
+                </div>
+                <div class="row">
+                    <div class="col"><b>Total:</b> </div>
+                    <div class="col text-right balanced">  R${{order.total}}</div>
+                </div>
+            </ion-item>
+            <ion-item class="item-divider">
+                <b>Estatus</b>
+                <h3>{{order.status_label}}</h3>
             </ion-item>
         </ion-list>
     </ion-content>

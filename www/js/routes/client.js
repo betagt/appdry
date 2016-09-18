@@ -9,6 +9,7 @@ angular.module('starter').config(
             controller:'ClientMenuCtrl'
         })
             .state('client.order',{
+                cache:false,
                 url:'/order',
                 templateUrl:'templates/client/order.html',
                 controller:'ClientOrderCtrl'
@@ -88,5 +89,23 @@ angular.module('starter').config(
                 url:'/user_edit',
                 templateUrl:'templates/client/user_edit.html',
                 controller:'UserEditCtrl'
+            })
+            .state('client.faleconosco',{
+                cache:false,
+                url:'/faleconosco',
+                templateUrl:'templates/client/faleconosco.html',
+                controller:'FaleConoscoCtrl'
+            })
+            .state('client.avaliacoes',{
+                cache:false,
+                url:'/avaliacoes',
+                templateUrl:'templates/client/avaliacoes.html',
+                controller:'AvaliacoesCtrl'
+            })
+            .state('client.add_avaliacao',{
+                cache:false,
+                url:'/add_avaliacao/:id',
+                templateUrl:'templates/client/add_avaliacao.html',
+                controller:'AvaliacoesAddCtrl'
             });
     });

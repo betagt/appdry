@@ -1,11 +1,12 @@
 angular.module('starter.controllers')
     .controller('EstabelecimentosCtrl',[
-        '$scope','$state','$ionicTabsDelegate','$ionicLoading','UserData','Estabelecimentos', '$ionicPopup','$ionicNavBarDelegate',
-        function ($scope,$state, $ionicTabsDelegate,$ionicLoading,UserData,Estabelecimentos, $ionicPopup, $ionicNavBarDelegate) {
+        '$scope','$state','$ionicTabsDelegate','$ionicLoading','UserData','Estabelecimentos', '$ionicPopup',
+        function ($scope,$state, $ionicTabsDelegate,$ionicLoading,UserData,Estabelecimentos, $ionicPopup) {
             $scope.selectTabWithIndex = function(index) {
                 $ionicTabsDelegate.select(index);
             }
 
+            $scope.readOnly = true;
             $scope.estabelecimentos = [];
             $ionicLoading.show({
                 template: 'Carregando...'
@@ -27,7 +28,6 @@ angular.module('starter.controllers')
                     $scope.$broadcast('scroll.refreshComplete');
                 });
             };
-
             function loadEstabelecimentos(){
                 return Estabelecimentos.query({id:null,include:'endereco,entrega'}).$promise;
             }

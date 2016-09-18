@@ -1,31 +1,37 @@
 <ion-view>
     <ion-nav-title>
-        <h1 class="title">Top Mais Delivery - mais produtos</h1>
+        <h1 class="title">Meus Rangos</h1>
     </ion-nav-title>
-    <div class="bar bar-subheader">
-        <h2 class="title">
-            Meus Pedidos
-        </h2>
-    </div>
-    <ion-content class="padding has-subheader">
-        <ion-refresher pulling-text="Puxe para atualizar..." on-refresh="doRefresh()">
-
-        </ion-refresher>
-        <ion-list>
-            <ion-item ng-repeat="item in items" ng-click="openOrderDetail(item)" on-hold="showActionSheet(item)">
-                <div class="row">
-                    <div class="col">
-                        <h2> {{item.created_at.date|limitTo:10|date:'dd/MM/yyyy'}} </h2>
-                        <p>
-                            {{item.product_names|limitTo:2|join:', '}}
-                        </p>
-                        <i class="ion ion-ios-cart icon-left"> {{item.product_names.length}} Itens</i>
-                    </div>
-                    <div class="col text-right">
-                        <i class="ion ion-social-usd"> {{item.total}}</i>
-                    </div>
-                </div>
-            </ion-item>
-        </ion-list>
-    </ion-content>
+    <ion-tabs class="tabs-striped tabs-top tabs-background-assertive tabs-color-light ">
+        <ion-tab title="ANDAMENTO" >
+            <ion-view class="padding">
+                <ion-content class="padding ">
+                    <ion-refresher pulling-text="Puxe para atualizar..." on-refresh="doRefresh()"></ion-refresher>
+                    <ion-list>
+                        <ion-item ng-repeat="item in items|filter:{status:0}" class="item-thumbnail-left"  ng-click="showActionSheet(item)" ng-include="'templates/client/includeEstabelecimentos/pedidoList.html'"></ion-item>
+                    </ion-list>
+                </ion-content>
+            </ion-view>
+        </ion-tab>
+        <ion-tab title="CONCLUÍDOS">
+            <ion-view class="padding">
+                <ion-content class="padding ">
+                    <ion-refresher pulling-text="Puxe para atualizar..." on-refresh="doRefresh()"></ion-refresher>
+                    <ion-list>
+                        <ion-item ng-repeat="item in items|filter:{status:1}" class="item-thumbnail-left"  ng-click="showActionSheet(item)" ng-include="'templates/client/includeEstabelecimentos/pedidoList.html'"></ion-item>
+                    </ion-list>
+                </ion-content>
+            </ion-view>
+        </ion-tab>
+        <ion-tab title="CANCELADOS">
+            <ion-view class="padding">
+                <ion-content class="padding ">
+                    <ion-refresher pulling-text="Puxe para atualizar..." on-refresh="doRefresh()"></ion-refresher>
+                    <ion-list>
+                        <ion-item ng-repeat="item in items|filter:{status:2}" class="item-thumbnail-left"  ng-click="showActionSheet(item)" ng-include="'templates/client/includeEstabelecimentos/pedidoList.html'"></ion-item>
+                    </ion-list>
+                </ion-content>
+            </ion-view>
+        </ion-tab>
+    </ion-tabs>
 </ion-view>

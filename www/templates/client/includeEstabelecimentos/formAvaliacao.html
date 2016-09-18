@@ -1,0 +1,19 @@
+<ion-list class="list margin-top">
+    <ion-item  class="item-divider">
+        <i class="ion ion-ios-paper-outline"></i> Avalie seu pedido
+    </ion-item>
+    <ion-item class="item range range-positive" ng-repeat="questao in questoes">
+        {{questao.questao}} <input type="range" ng-model="items[questao.id]" name="volume" min="1" max="5" value="1">({{items[questao.id]}}) 5
+    </ion-item>
+    <ion-item>
+        <span class="input-label">
+            <i class="ion ion-ios-paper-outline"></i> Observações:
+        </span>
+        <textarea full-size class="" ng-model="voto.mensagem" placeholder="Insira a mensagem"></textarea>
+    </ion-item>
+    <ion-item>
+        <button class="button button-full button-assertive" ng-click="save()">
+            <i class="ion ion-checkmark-round"></i> Avaliar
+        </button>
+    </ion-item>
+</ion-list>

@@ -1,0 +1,35 @@
+<ion-view>
+    <ion-nav-title>
+        <h1 class="title">Avaliar pedido</h1>
+    </ion-nav-title>
+
+    <ion-content class="padding">
+        <ion-list>
+            <ion-item class="item-thumbnail-left item-borderless" ng-include="'templates/client/includeEstabelecimentos/estabelecimento.tpl.html'">
+                <button class="">  </button>
+            </ion-item>
+        </ion-list>
+        <ion-list class="card">
+            <ion-item  class="item-divider">
+                <i class="ion ion-ios-paper-outline"></i> Detalhes do Pedido
+            </ion-item>
+            <ion-item class="item-text-wrap">
+                <div class="row remove-padding" ng-repeat="product in order.items.data">
+                    <div class="col"><b>{{product.qtd}}x</b> {{product.product.data.name}}</div>
+                    <div class="col text-right"> R${{product.qtd * product.price}}</div>
+                </div>
+            </ion-item>
+            <ion-item class="item-divider">
+                <div class="row remove-padding">
+                    <div class="col"><b>Taxa de entrega</b></div>
+                    <div class="col text-right"> R${{order.taxa_entrega}}</div>
+                </div>
+                <div class="row remove-padding">
+                    <div class="col"><b>Total do pedido</b></div>
+                    <div class="col text-right"> R${{order.total}}</div>
+                </div>
+            </ion-item>
+        </ion-list>
+        <ion-list class="list" ng-include="'templates/client/includeEstabelecimentos/formAvaliacao.html'"></ion-list>
+    </ion-content>
+</ion-view>

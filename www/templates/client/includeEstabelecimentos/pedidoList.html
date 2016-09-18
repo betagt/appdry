@@ -1,0 +1,24 @@
+<img src="{{item.estabelecimento.data.icone}}">
+<h2>
+    <b>Pedito:</b> <i class="ion ion-pound"></i>{{item.id}}
+</h2>
+<p>{{item.estabelecimento.data.nome}} - {{item.estabelecimento.data.endereco.data.bairro}}</p>
+<span>
+    <i class="ion ion-calendar"></i> {{item.created_at.date|dateTimeFormat:'dd/MM'}}
+</span>
+<span>
+    <i class="ion ion-clock"></i> {{item.created_at.date|dateTimeFormat:'HH:mm'}}
+</span>
+<span>
+  <i class="ion ion-android-cart"></i> R${{item.total_label}}
+</span>
+<br>
+<div>
+    <span>
+        <i class="ion ion-android-star"></i>
+        <i class="ion ion-android-star"></i>
+        <i class="ion ion-android-star"></i>
+        <i class="ion ion-android-star"></i>
+        <i class="ion ion-android-star-half"></i>
+    </span>
+</div>

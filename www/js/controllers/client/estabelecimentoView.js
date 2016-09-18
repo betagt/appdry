@@ -11,6 +11,8 @@ angular.module('starter.controllers')
             $scope.selectTabWithIndex = function(index) {
                 $ionicTabsDelegate.select(index);
             }
+
+            $scope.readOnly = true;
             defaultQtd();
             $scope.estabelecimentos = [];
             $ionicLoading.show({
@@ -23,6 +25,12 @@ angular.module('starter.controllers')
                 return Estabelecimentos.estabelecimentobycategory({id:idEstabelecimento}).$promise;
             }).then(function (data) {
                 $scope.categories = data.data;
+                return Estabelecimentos.estabelecimentoAvaliacao({id:idEstabelecimento}).$promise
+            }).then(function (data) {
+                $scope.avaliacoes = data.data;
+                return Estabelecimentos.estabelecimentoAvaliacaoItems({id:idEstabelecimento}).$promise
+            }).then(function (data) {
+                $scope.avaliacoesItens = data.data;
                 $ionicLoading.hide();
             },function (dataError) {
                 $ionicLoading.hide();
@@ -35,7 +43,13 @@ angular.module('starter.controllers')
             };
             
             $scope.addItem = function (item) {
-
+                if(!(parseInt(item.power )== 2)){
+                    $ionicPopup.alert({
+                        title: 'Adivertência',
+                        template: 'Estabelecimento fechado no momento!'
+                    });
+                    return false;
+                }
                 Product.first({id:item.id},function (data) {
                     $scope.productExtras = data.data.extras.data
                     var myPopup = $ionicPopup.show({

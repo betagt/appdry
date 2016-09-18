@@ -6,13 +6,16 @@
         <ion-nav-back-button side="right" class="button-icon ion-arrow-left-c"></ion-nav-back-button>
     </ion-nav-bar>
     <ion-content class="padding">
-        <form name="form" ng-submit="login()">
-            <div class="list list-inset">
-                <i class="ion-email"></i> E-mail:
-                <label class="item item-input">
-                    <input type="email" placeholder="seu-email@email.com" name="email" ng-model="email" required="required">
-                </label>
-            </div>
+        <form name="rememberForm" novalidate="" on-valid-submit="rememberPass(rememberForm)">
+            <ion-list>
+                <ion-item class="item item-borderless item-input item-stacked-label">
+                    <span class="input-label item-icon-left icon ion-email">
+                          E-mail: *
+                    </span>
+                    <input type="email" placeholder="seu-email@email.com" name="email" ng-model="user.email" required>
+                    <i class="icon ion-alert-circled error"> Preencha o E-mail</i>
+                </ion-item>
+            </ion-list>
             <button type="submit" class="button button-full button-assertive ion ion-android-person"> Enviar</button>
         </form>
     </ion-content>

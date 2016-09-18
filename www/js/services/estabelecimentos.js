@@ -11,6 +11,14 @@ angular.module('starter.services')
                 method:'GET',
                 url:appConfig.baseUrl+'/api/client/estabelecimentos/:id/categories'
             },
+            estabelecimentoAvaliacao:{
+                method:'GET',
+                url:appConfig.baseUrl+'/api/client/estabelecimentos/:id/avaliacoes'
+            },
+            estabelecimentoAvaliacaoItems:{
+                method:'GET',
+                url:appConfig.baseUrl+'/api/client/estabelecimentos/:id/avaliacoes/items'
+            }
         });
 
     }]);

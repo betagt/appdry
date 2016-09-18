@@ -1,4 +1,4 @@
-<!--<img src="{{item.icone}}">-->
+<img src="{{item.icone}}">
 <h2>{{item.nome}}</h2>
 <p>{{item.endereco.data.bairro}}</p>
 <div>
@@ -9,10 +9,6 @@
         <i class="ion ion-android-cart"></i> {{item.entrega.data.label_faixa_preco}}
     </span><br>
     <span>
-        <i class="ion ion-android-star"></i>
-        <i class="ion ion-android-star"></i>
-        <i class="ion ion-android-star"></i>
-        <i class="ion ion-android-star"></i>
-        <i class="ion ion-android-star-half"></i>
+       <rating ng-model="item.nota" readonly="readOnly" max="5"></rating>
     </span>
 </div>

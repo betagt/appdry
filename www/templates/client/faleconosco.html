@@ -1,0 +1,86 @@
+<ion-view>
+    <ion-nav-title>
+        <h1 class="title">Meus Rangos</h1>
+    </ion-nav-title>
+    <ion-tabs class="tabs-striped tabs-top tabs-background-assertive tabs-color-light ">
+        <ion-tab title="FALE CONOSCO" >
+            <ion-view class="padding">
+                <ion-content class="padding ">
+                    <form name="falaConoscoForm" novalidate="" on-valid-submit="faleConosco(falaConoscoForm)">
+                        <input type="hidden" ng-model="client.assunto" >
+                        <ion-list>
+                            <ion-item class="item item-borderless item-input item-stacked-label">
+                                <span class="input-label">
+                                    <i class="ion ion-person"></i> Nome *:
+                                </span>
+                                <input type="text" ng-model="client.name" placeholder="Nome *:" required>
+                                <i class="icon ion-alert-circled error"> Preencha a Nome</i>
+                            </ion-item>
+                            <ion-item class="item item-borderless item-input item-stacked-label">
+                                <span class="input-label item-icon-left icon ion-email">
+                                      E-mail: *
+                                </span>
+                                <input type="email" placeholder="seu-email@email.com" name="email" ng-model="client.email" required>
+                                <i class="icon ion-alert-circled error"> Preencha o email</i>
+                            </ion-item>
+                            <ion-item class="item item-borderless item-input item-stacked-label">
+                                <span class="input-label">
+                                    <i class="ion ion-person"></i> Telefone:
+                                </span>
+                                <input type="tel" ng-model="client.telefone" placeholder="Telefone:" required>
+                                <i class="icon ion-alert-circled error"> Preencha o telefone</i>
+                            </ion-item>
+                            <ion-item class="item item-borderless item-input item-stacked-label">
+                                <span class="input-label">
+                                    <i class="ion ion-person"></i> Mensagem *:
+                                </span>
+                                <textarea ng-model="client.mensagem" placeholder="Mensagem *:" required></textarea>
+                            </ion-item>
+                        </ion-list>
+                        <button type="submit" class="button button-full button-assertive ion ion-android-person"> Enviar</button>
+                    </form>
+                </ion-content>
+            </ion-view>
+        </ion-tab>
+        <ion-tab title="SUGERIR">
+            <ion-view class="padding">
+                <ion-content class="padding ">
+                    <form name="indiqueForm" novalidate="" on-valid-submit="indiqueSubmit(indiqueForm)">
+                        <input type="hidden" ng-model="indique.assunto" value="Indicar Estabelecimento" >
+                        <ion-list>
+                            <ion-item class="item item-borderless item-input item-stacked-label">
+                                <span class="input-label">
+                                    <i class="ion ion-person"></i> Nome *:
+                                </span>
+                                <input type="text" ng-model="indique.name" placeholder="Nome *:" required>
+                                <i class="icon ion-alert-circled error"> Preencha o nome</i>
+                            </ion-item>
+                            <ion-item class="item item-borderless item-input item-stacked-label">
+                                <span class="input-label item-icon-left icon ion-email">
+                                      E-mail: *
+                                </span>
+                                <input type="email" placeholder="seu-email@email.com" name="email" ng-model="indique.email" required>
+                                <i class="icon ion-alert-circled error"> Preencha o E-mail</i>
+                            </ion-item>
+                            <ion-item class="item item-borderless item-input item-stacked-label">
+                                <span class="input-label">
+                                    <i class="ion ion-person"></i> Nome do estabelecimento: *
+                                </span>
+                                <input type="text" ng-model="indique.mensagem" placeholder="Nome do estabelecimento: *" required>
+                                <i class="icon ion-alert-circled error"> Preencha o Nome do estabelecimento</i>
+                            </ion-item>
+                            <ion-item class="item item-borderless item-input item-stacked-label">
+                                <span class="input-label">
+                                    <i class="ion ion-person"></i> Telefone: *
+                                </span>
+                                <input type="tel" ng-model="indique.telefone" placeholder="Telefone: *" required>
+                                <i class="icon ion-alert-circled error"> Preencha o telefone</i>
+                            </ion-item>
+                        </ion-list>
+                        <button type="submit" class="button button-full button-assertive ion ion-android-person"> Enviar</button>
+                    </form>
+                </ion-content>
+            </ion-view>
+        </ion-tab>
+    </ion-tabs>
+</ion-view>

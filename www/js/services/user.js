@@ -19,6 +19,10 @@ angular.module('starter.services')
                 method:'PATCH',
                 url:appConfig.baseUrl+'/api/users/updatefone'
             },
+            rememberMe:{
+                method:'PATCH',
+                url:appConfig.baseUrl+'/remember_me'
+            },
             update:{
                 method:'PUT',
                 url:appConfig.baseUrl+'/api/users/update_user'

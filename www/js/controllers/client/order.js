@@ -21,9 +21,10 @@ angular.module('starter.controllers')
             }
             function getOrders() {
                return ClientOrder.get({
-                    id:null,
-                    orderBy:'created_at',
-                    sortedBy:'desc'
+                   id:null,
+                   orderBy:'created_at',
+                   sortedBy:'desc',
+                   include:'estabelecimento,estabelecimento'
                 }).$promise;
             }
 

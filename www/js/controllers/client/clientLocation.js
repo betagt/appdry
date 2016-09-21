@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-    .controller('GuestLocationCtrl',[
+    .controller('ClientLocationCtrl',[
         '$scope','$state','$ionicTabsDelegate','UserData','$viaCep','$ionicPopup','CepData','$cordovaGeolocation','$ionicLoading',
         function ($scope,$state, $ionicTabsDelegate,UserData,$viaCep,$ionicPopup,CepData,$cordovaGeolocation,$ionicLoading) {
 
@@ -21,7 +21,7 @@ angular.module('starter.controllers')
             function setCep(cep){
                 $viaCep.getCepGuest(cep.replace('-','')).then(function (data) {
                     setObjCep(data);
-                    $state.go('guest.estabelecimentos');
+                    $state.go('client.estabelecimentos');
                 },function (responseError) {
                     $ionicPopup.alert({
                         title:'Advertência',

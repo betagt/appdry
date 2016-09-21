@@ -1,9 +1,7 @@
 <ion-view>
-    <ion-nav-bar class="bar-assertive">
-        <ion-nav-title>
-            <h1 class="title">Rango Delivery - Login</h1>
-        </ion-nav-title>
-    </ion-nav-bar>
+    <ion-nav-title>
+        <h1 class="title">Rango Delivery - Login</h1>
+    </ion-nav-title>
     <ion-content class="padding">
         <form name="form" ng-submit="login()">
             <div class="list list-inset">
@@ -23,13 +21,13 @@
         <div class="text-center row assertive">
             <div class="col">
                 <h5 >
-                    <a ui-sref="remember_pass" class="button button-outline button-assertive border-remove">
+                    <a ui-sref="guest.remember_pass" class="button button-outline button-assertive border-remove">
                         <i class="ion ion-android-lock"></i> Lembrar Senha
                     </a>
                 </h5>
 
                 <h5>
-                    <a ui-sref="user_add" class="button button-outline button-assertive border-remove" >
+                    <a ui-sref="guest.user_add" class="button button-outline button-assertive border-remove" >
                         <i class="ion ion-android-person-add"></i> Cadastre-se
                     </a>
                 </h5>

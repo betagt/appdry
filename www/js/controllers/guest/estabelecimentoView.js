@@ -1,5 +1,5 @@
 angular.module('starter.controllers')
-    .controller('EstabelecimentosViewCtrl',[
+    .controller('EstabelecimentosGuestViewCtrl',[
         '$scope','$state','$ionicTabsDelegate','$stateParams','$ionicLoading','UserData','Estabelecimentos', '$ionicPopup','$cart','Product',
         function ($scope,$state, $ionicTabsDelegate, $stateParams,$ionicLoading,UserData,Estabelecimentos, $ionicPopup, $cart, Product) {
 
@@ -50,52 +50,30 @@ angular.module('starter.controllers')
                     });
                     return false;
                 }
-                alert('vf');
-                Product.first({id:item.id},function (data) {
-                    $scope.productExtras = data.data.extras.data
-                    var myPopup = $ionicPopup.show({
-                        templateUrl: 'templates/client/includeEstabelecimentos/formEstabelecimento.html',
-                        title: item.name,
-                        subTitle: item.description+' <b class="balanced">R$'+item.price+'</b>',
-                        scope: $scope,
-                        buttons: [
-                            { text: 'Cancelar' },
-                            {
-                                text: '<b>Adicionar</b>',
-                                type: 'button-assertive',
-                                onTap: function(e) {
-                                    //console.log(e);
-                                    return parseInt($scope.data.qtd);
-                                }
+                var myPopup = $ionicPopup.show({
+                    template: 'Para Inserir itens no carrinho faça o login',
+                    title: item.name,
+                    subTitle: item.description+' <b class="balanced">R$'+item.price+'</b>',
+                    scope: $scope,
+                    buttons: [
+                        { text: 'Cancelar' },
+                        {
+                            text: '<b>Ir para Login</b>',
+                            type: 'button-assertive',
+                            onTap: function(e) {
+                                //console.log(e);
+                                return parseInt($scope.data.qtd);
                             }
-                        ]
-                    });
-
-                    myPopup.then(function(res) {
-                        if(res) {
-                            if (parseInt(res) < 1) {
-                                $ionicPopup.alert({
-                                    title: 'Adivertência',
-                                    template: 'Quantidade invalida!'
-                                });
-                                defaultQtd();
-                                return;
-                            }
-
-                            item.qtd = parseInt(res);
-                            item.observacoes = $scope.data.observacoes;
-                            cart.addItem(item);
-                            $scope.showCartButton = cart.get().items.length >0;
-                            $ionicPopup.alert({
-                                title: 'Adivertência',
-                                template: 'Item adcionado ao carrinho'
-                            });
                         }
-                        defaultQtd();
-                    });
-                },function(responseError){});
+                    ]
+                });
 
-
+                myPopup.then(function(res) {
+                    if(res) {
+                        $state.go('guest.login');
+                    }
+                    defaultQtd();
+                });
             };
             $scope.goCheckout = function () {
                 $state.go('client.checkout',{id:idEstabelecimento});

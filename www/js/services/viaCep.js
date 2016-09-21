@@ -6,6 +6,15 @@ angular.module('starter.services')
         return {
             getCep: function(cep){
                 return $http.get(appConfig.baseUrl+'/api/cep/'+cep+'/json');
+            },
+            getCepGuest: function(cep){
+                return $http.get(appConfig.baseUrl+'/cep/'+cep+'/json');
+            },
+            getCepLocation: function(params){
+                return $http({
+                    method:'GET',
+                    url:appConfig.baseUrl+'/api/cep/logradouro?cidade='+params.cidade+'&logradouro='+params.logradouro+'&estado='+params.estado
+                });
             }
         }
     }]);

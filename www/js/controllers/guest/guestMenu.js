@@ -1,7 +1,8 @@
 angular.module('starter.controllers')
     .controller('GuestMenuCtrl',[
-        '$scope','$state','UserData', '$cordovaSocialSharing',
-            function ($scope,$state,UserData,$cordovaSocialSharing) {
+        '$scope','$state','UserData', '$cordovaSocialSharing', 'CepData',
+            function ($scope,$state,UserData,$cordovaSocialSharing,CepData) {
+                $scope.cep = CepData.get();
                     $scope.shareAnywhere = function() {
                             $cordovaSocialSharing.share("This is your message", "This is your subject", "www/imagefile.png", "https://www.thepolyglotdeveloper.com");
                     }

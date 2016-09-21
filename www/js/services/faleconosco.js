@@ -3,7 +3,7 @@
  */
 angular.module('starter.services')
     .factory('FaleConosco',['$resource','appConfig',function ($resource, appConfig) {
-        return $resource(appConfig.baseUrl+'/api/client/store_contato/:id',{},{
+        return $resource(appConfig.baseUrl+'/api/store_contato/:id',{},{
             query:{
                 isArray:false
             }

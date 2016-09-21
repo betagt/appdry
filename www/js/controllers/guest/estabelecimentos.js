@@ -1,21 +1,26 @@
 angular.module('starter.controllers')
-    .controller('EstabelecimentosCtrl',[
-        '$scope','$state','$ionicTabsDelegate','$ionicLoading','UserData','Estabelecimentos', '$ionicPopup','CepData',
-        function ($scope,$state, $ionicTabsDelegate,$ionicLoading,UserData,Estabelecimentos, $ionicPopup,CepData) {
-            $scope.selectTabWithIndex = function(index) {
-                $ionicTabsDelegate.select(index);
-            }
+    .controller('EstabelecimentosGuestCtrl',[
+        '$scope','$state','$ionicTabsDelegate','$ionicLoading','UserData','Estabelecimentos', '$ionicPopup', 'CepData','$ionicNavBarDelegate',
+        function ($scope,$state, $ionicTabsDelegate,$ionicLoading,UserData,Estabelecimentos, $ionicPopup, CepData,$ionicNavBarDelegate) {
+
             if(CepData.validate()) {
-                $state.go('client.location');
+                $state.go('guest.location');
                 return;
             }
 
             $scope.cep = CepData.get();
+
+            $ionicNavBarDelegate.showBackButton(false);
+            $scope.selectTabWithIndex = function(index) {
+                $ionicTabsDelegate.select(index);
+            }
+
             $scope.readOnly = true;
             $scope.estabelecimentos = [];
             $ionicLoading.show({
                 template: 'Carregando...'
             });
+
             loadEstabelecimentos().then(function (data) {
                 $scope.estabelecimentos = data.data;
                 $scope.$broadcast('scroll.refreshComplete');
@@ -32,13 +37,14 @@ angular.module('starter.controllers')
                     $scope.$broadcast('scroll.refreshComplete');
                 });
             };
+
             function loadEstabelecimentos(){
                 return Estabelecimentos.query({cidade:CepData.get().cidade.id,include:'endereco,entrega'}).$promise;
             }
 
             $scope.goView = function (item) {
                  if (item.power == 1) {
-                    $state.go('client.estabelecimentos_view', {
+                    $state.go('guest.estabelecimentos_view', {
                         id: item.id
                     });
                      return;
@@ -48,7 +54,7 @@ angular.module('starter.controllers')
                     title: 'Adivertência',
                     template: 'O estabelecimento está fechado no momento'
                 }).then(function () {
-                    $state.go('client.estabelecimentos_view',{
+                    $state.go('guest.estabelecimentos_view',{
                         id:item.id
                     });
                 });

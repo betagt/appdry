@@ -1,0 +1,114 @@
+<ion-view>
+    <ion-nav-title>
+        <h1 class="title">{{item.nome}}</h1>
+    </ion-nav-title>
+    <ion-tabs class="tabs-striped tabs-top tabs-background-assertive tabs-color-light ">
+        <ion-tab title="CARDÁPIO" >
+            <ion-view class="padding">
+                <ion-content class="padding" >
+                    <ion-list>
+                        <ion-item class="item-thumbnail-left item-borderless" ng-include="'templates/client/includeEstabelecimentos/estabelecimento.tpl.html'">
+                            <button class="">  </button>
+                        </ion-item>
+                    </ion-list>
+                    <div class="card remove-top-pad-marg" ng-repeat="categoria in categories">
+                        <div class="item item-divider assertive">
+                            {{categoria.name}}
+                        </div>
+                        <div class="item item-text-wrap">
+                            <ion-list>
+                                <ion-item ng-repeat="produto in categoria.products.data" ng-click="addItem(produto)" >
+                                    <div class="row">
+                                        <div class="col text-left">
+                                            {{produto.name}}<br />
+                                            <p>{{produto.description}}</p>
+                                        </div>
+                                        <div class="col text-right">
+                                            <span class="balanced padding-right">R${{produto.price}}</span>
+                                            <i class="ion ion-ios-arrow-right"></i>
+                                        </div>
+                                    </div>
+                                </ion-item>
+                            </ion-list>
+                        </div>
+                    </div>
+                </ion-content>
+                <div class="fixed-bottom-right" ng-show="showCartButton && item.power==1">
+                    <div class="text-right">
+                        <button class="button button-assertive circle" ng-click="goCheckout()">
+                            <i class="ion ion-android-cart"></i>
+                        </button>
+                    </div>
+                </div>
+            </ion-view>
+        </ion-tab>
+        <ion-tab title="AVALIAÇÃO">
+            <ion-view class="padding">
+                <ion-content class="padding ">
+                   <ion-list>
+                       <ion-item class="item-borderless remove-padding">
+                           <div class="row">
+                               <div class="col-30 text-center">
+                                   <span class="font-avaliacao">
+                                       {{item.nota}}
+                                   </span>
+                                   <rating ng-model="item.nota" class="energized" readonly="readOnly" max="5"></rating>
+                               </div>
+                               <div class="col">
+                                   <div class="row remove-padding" ng-repeat="aval in avaliacoesItens">
+                                       <div class="col">{{aval.questao}}</div>
+                                       <div class="col">
+                                           <rating ng-model="aval.nota" class="energized float-right" readonly="readOnly" max="5"></rating>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </ion-item>
+                       <ion-item class="item-divider assertive">
+                           <i class="ion ion-clipboard"></i> Quem já provou desse Rango
+                       </ion-item>
+                       <ion-item class="item-thumbnail-left item-text-wrap" ng-repeat="avaliacao in avaliacoes">
+                           <div class="row remove-padding-left remove-padding-left">
+                               <div class="col text-left remove-padding-left">
+                                    <b>{{avaliacao.cliente}}</b>
+                               </div>
+                               <div class="col text-right remove-padding-right">
+                                    <rating ng-model="avaliacao.nota" class="energized float-right" readonly="readOnly" max="5"></rating>
+                               </div>
+                           </div>
+                           <i class="ion ion-calendar"></i> {{avaliacao.created_at|dateTimeFormat:"dd/MM/yy"}} <i class="ion ion-clock"></i> {{avaliacao.created_at|dateTimeFormat:"HH:mm"}}
+                            <p class="padding-top">
+                                {{avaliacao.mensagem}}
+                            </p>
+                       </ion-item>
+                   </ion-list>
+                </ion-content>
+            </ion-view>
+        </ion-tab>
+        <ion-tab title="INFORMAÇÕES">
+            <ion-view class="padding">
+                <ion-content class="padding ">
+                    <ion-list>
+                        <ion-item class="item-thumbnail-left item-borderless" ng-include="'templates/client/includeEstabelecimentos/estabelecimento.tpl.html'"></ion-item>
+                    </ion-list>
+                    <ion-list>
+                        <ion-item class="item-divider assertive">
+                            <i class="ion ion-clock"></i> Horários
+                        </ion-item>
+                        <ion-item ng-repeat="funcionamento in item.funcionamentos.data">
+                            <div class="row remove-padding">
+                                <div class="col">
+                                    {{funcionamento.dia_funcionamento_label}}
+                                </div>
+                                <div class="col text-right">
+                                    {{funcionamento.horario_funcionamento_label}}
+                                </div>
+                            </div>
+                        </ion-item>
+                    </ion-list>
+                </ion-content>
+            </ion-view>
+        </ion-tab>
+    </ion-tabs>
+
+</ion-view>

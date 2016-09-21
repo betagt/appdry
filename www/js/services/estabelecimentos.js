@@ -3,21 +3,25 @@
  */
 angular.module('starter.services')
     .factory('Estabelecimentos',['$resource','appConfig',function ($resource,appConfig) {
-        return $resource(appConfig.baseUrl+'/api/client/estabelecimentos/:id',{id:'@id'},{
+        return $resource(appConfig.baseUrl+'/api/estabelecimentos/:id',{id:'@id'},{
             query:{
                 isArray:false
             },
             estabelecimentobycategory:{
                 method:'GET',
-                url:appConfig.baseUrl+'/api/client/estabelecimentos/:id/categories'
+                url:appConfig.baseUrl+'/api/estabelecimentos/:id/categories'
             },
             estabelecimentoAvaliacao:{
                 method:'GET',
-                url:appConfig.baseUrl+'/api/client/estabelecimentos/:id/avaliacoes'
+                url:appConfig.baseUrl+'/api/estabelecimentos/:id/avaliacoes'
             },
             estabelecimentoAvaliacaoItems:{
                 method:'GET',
-                url:appConfig.baseUrl+'/api/client/estabelecimentos/:id/avaliacoes/items'
+                url:appConfig.baseUrl+'/api/estabelecimentos/:id/avaliacoes/items'
+            },
+            estabelecimentoAvaliacaoOrder:{
+                method:'GET',
+                url:appConfig.baseUrl+'/api/client/estabelecimentos/:id/avaliacoes/order'
             }
         });
 

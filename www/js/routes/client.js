@@ -55,11 +55,13 @@ angular.module('starter').config(
                 controller:'ClientViewDeliveryCtrl'
             })
             .state('client.estabelecimentos',{
+                cache:false,
                 url:'/estabelecimentos',
                 templateUrl:'templates/client/estabelecimentos.html',
                 controller:'EstabelecimentosCtrl'
             })
             .state('client.estabelecimentos_view',{
+                cache:false,
                 url:'/estabelecimentos_view/:id',
                 templateUrl:'templates/client/estabelecimentos_view.html',
                 controller:'EstabelecimentosViewCtrl'
@@ -95,6 +97,12 @@ angular.module('starter').config(
                 url:'/faleconosco',
                 templateUrl:'templates/client/faleconosco.html',
                 controller:'FaleConoscoCtrl'
+            })
+            .state('client.location',{
+                cache:false,
+                url:'/client-location',
+                templateUrl:'templates/client/client_location.html',
+                controller:'ClientLocationCtrl'
             })
             .state('client.avaliacoes',{
                 cache:false,

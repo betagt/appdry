@@ -21,7 +21,7 @@ angular.module('starter.services')
             },
             rememberMe:{
                 method:'PATCH',
-                url:appConfig.baseUrl+'/remember_me'
+                url:appConfig.baseUrl+'/api/remember_me'
             },
             update:{
                 method:'PUT',
@@ -29,7 +29,7 @@ angular.module('starter.services')
             },
             createUser:{
                 method:'POST',
-                url:appConfig.baseUrl+'/store_user'
+                url:appConfig.baseUrl+'/api/store_user'
             }
         });
 

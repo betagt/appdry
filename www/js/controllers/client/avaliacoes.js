@@ -5,9 +5,14 @@ angular.module('starter.controllers')
         '$state',
         '$ionicLoading',
         'ClientOrder',
-        function($scope, $state, $ionicLoading, ClientOrder){
+        '$ionicModal',
+        'Estabelecimentos',
+        function($scope, $state, $ionicLoading, ClientOrder,$ionicModal,Estabelecimentos){
 
             $scope.items = [];
+            $scope.order = [];
+            $scope.item = [];
+            $scope.avaliacoesItens = [];
             $ionicLoading.show({
                 template:'Carregando...'
             });
@@ -24,7 +29,7 @@ angular.module('starter.controllers')
                     id:null,
                     orderBy:'created_at',
                     sortedBy:'desc',
-                    include:'estabelecimento,estabelecimento'
+                    include:'estabelecimento.endereco,estabelecimento.entrega,items'
                 }).$promise;
             }
 
@@ -42,4 +47,41 @@ angular.module('starter.controllers')
                 $state.go('client.add_avaliacao',{id:order.id});
             }
 
+
+            $ionicModal.fromTemplateUrl('templates/client/modal/avaliacao_view.html', {
+                scope: $scope,
+                animation: 'slide-in-up'
+            }).then(function(modal) {
+                $scope.modal = modal;
+            });
+
+            $scope.openModal = function(item) {
+                $scope.item = item.estabelecimento.data;
+                $scope.order = item;
+                $ionicLoading.show({
+                    template:'Carregando...'
+                });
+                Estabelecimentos.estabelecimentoAvaliacaoOrder({id:item.id},function (data) {
+                    $ionicLoading.hide();
+                    $scope.avaliacoesItens = data.data;
+                    $scope.modal.show();
+                },function (responseError) {
+                    $ionicLoading.hide();
+                });
+            };
+            $scope.closeModal = function() {
+                $scope.modal.hide();
+            };
+            // Cleanup the modal when we're done with it!
+            $scope.$on('$destroy', function() {
+                $scope.modal.remove();
+            });
+            // Execute action on hide modal
+            $scope.$on('modal.hidden', function() {
+                // Execute action
+            });
+            // Execute action on remove modal
+            $scope.$on('modal.removed', function() {
+                // Execute action
+            });
         }]);

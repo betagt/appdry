@@ -6,6 +6,9 @@
 .border-remove{
     border: 0px !important;
 }
+.border-bottom,.custom-form input{
+    border-bottom: 1px #c2ccd1 solid;
+}
 .remove-top-pad-marg{
     padding-top: 0px;
     margin-top: 0;
@@ -76,4 +79,23 @@ form.ng-submitted input.ng-valid + i.icon.error {
 ul.rating.ng-not-empty.ng-valid li {
     float: left;
     margin-right: 3px;
+}
+
+
+.imobBoxTipo{
+    width: 100%;
+    overflow: hidden;
+}
+.imobBoxTipo select{
+    width: 100%;
+    background-color: #ccc;
+    height: 38px;
+    line-height: 38px;
+    color: #c6c6c6;
+    border-top:0;
+    border-right:0;
+    border-color: #ccc;
+    border-left: 0;
+    font-size: 100%;
+    background: transparent;
 }

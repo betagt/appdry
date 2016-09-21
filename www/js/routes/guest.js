@@ -14,6 +14,10 @@ angular.module('starter').config(
                 url:'/guest',
                 templateUrl:'templates/guest/menu.html',
                 controller:'GuestMenuCtrl'
+            }).state('guest.login',{
+                url:'/login',
+                templateUrl:'templates/login.html',
+                controller:'LoginCtrl'
             })
             .state('guest.location',{
             cache:false,
@@ -21,16 +25,34 @@ angular.module('starter').config(
             templateUrl:'templates/guest/guest_location.html',
             controller:'GuestLocationCtrl'
         })
-        .state('remember_pass',{
+        .state('guest.remember_pass',{
             cache:false,
             url:'/remember_pass',
             templateUrl:'templates/remember_pass.html',
             controller:'RememberPassCtrl'
         })
-        .state('user_add',{
+        .state('guest.user_add',{
             cache:false,
             url:'/user_add',
             templateUrl:'templates/user_add.html',
             controller:'UserAddCtrl'
+        })
+        .state('guest.faleconosco',{
+            cache:false,
+            url:'/faleconosco',
+            templateUrl:'templates/client/faleconosco.html',
+            controller:'FaleConoscoGuestCtrl'
+        })
+        .state('guest.estabelecimentos',{
+            cache:false,
+            url:'/estabelecimentos',
+            templateUrl:'templates/client/estabelecimentos.html',
+            controller:'EstabelecimentosGuestCtrl'
+        })
+        .state('guest.estabelecimentos_view',{
+            cache:false,
+            url:'/estabelecimentos_view/:id',
+            templateUrl:'templates/client/estabelecimentos_view.html',
+            controller:'EstabelecimentosGuestViewCtrl'
         });
     });

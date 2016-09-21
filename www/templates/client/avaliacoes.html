@@ -18,7 +18,7 @@
                 <ion-content class="padding ">
                     <ion-refresher pulling-text="Puxe para atualizar..." on-refresh="doRefresh()"></ion-refresher>
                     <ion-list>
-                        <ion-item ng-repeat="item in items|filter:{count_avaliacao:1}" class="item-thumbnail-left" ng-include="'templates/client/includeEstabelecimentos/pedidoList.html'"></ion-item>
+                        <ion-item ng-repeat="item in items|filter:{count_avaliacao:1}" ng-click="openModal(item)" class="item-thumbnail-left" ng-include="'templates/client/includeEstabelecimentos/pedidoList.html'"></ion-item>
                     </ion-list>
                 </ion-content>
             </ion-view>

@@ -1,35 +1,35 @@
-<form name="cadastroForm" novalidate="" on-valid-submit="cadastroSubmit(cadastroForm)">
-    <ion-item class="item item-borderless item-input item-stacked-label">
+<form name="cadastroForm" class="custom-form" novalidate="" on-valid-submit="cadastroSubmit(cadastroForm)">
+    <ion-item class="item item-borderless padding-right item-input item-stacked-label">
         <span class="input-label">
             <i class="ion ion-person"></i> Nome *:
         </span>
         <input type="text" ng-model="client.name" placeholder="Nome *:" required>
     </ion-item>
-    <ion-item class="item item-borderless item-input item-stacked-label">
+    <ion-item class="item item-borderless padding-right item-input item-stacked-label">
         <span class="input-label">
             <i class="icon ion-ios-email-outline"></i> Email *:
         </span>
         <input type="email" ng-model="client.email" ng-disabled="disabeEmail" name="email" placeholder="Email *:" required>
     </ion-item>
-    <ion-item class="item item-borderless item-input item-stacked-label">
+    <ion-item class="item item-borderless padding-right item-input item-stacked-label">
         <span class="input-label">
             <i class="icon ion-ios-email-outline"></i> CPF *:
         </span>
         <input type="text" ng-model="client.cpf" name="cpf" placeholder="CPF *:" required>
         <i class="icon ion-alert-circled error"> Preencha o CPF</i>
     </ion-item>
-    <ion-item class="item item-borderless item-input item-stacked-label">
+    <ion-item class="item item-borderless padding-right item-input item-stacked-label">
         <span class="input-label">
             <i class="icon ion-ios-calendar-outline"></i> Data de nascimento *:
         </span>
         <input type="date"  name="data_nascimento" ng-click="openDatePicker()" ng-model="client.data_nascimento" placeholder="Data de nascimento *:" required>
         <i class="icon ion-alert-circled error"> Preencha a Data de nascimento</i>
     </ion-item>
-    <ion-item class="item item-borderless item-input item-stacked-label">
+    <ion-item class="item item-borderless padding-right item-input item-stacked-label">
         <span class="input-label">
             <i class="icon ion-ios-calendar-outline"></i> Sexo *:
         </span>
-        <div class="padding-top">
+        <div class="padding-top imobBoxTipo">
             <select ng-model="client.sexo">
                 <option value="" selected>Sexo</option>
                 <option value="M" >Masculino - M</option>
@@ -37,21 +37,21 @@
             </select>
         </div>
     </ion-item>
-    <ion-item class="item item-borderless item-input item-stacked-label">
+    <ion-item class="item item-borderless padding-right item-input item-stacked-label">
         <span class="input-label">
             <i class="ion ion-android-phone-portrait"></i> Celular *:
         </span>
         <input type="tel" ng-model="client.telefone_celular" name="telefone_celular" placeholder="Celular" required>
         <i class="icon ion-alert-circled error"> Preencha o Celular</i>
     </ion-item>
-    <ion-item class="item item-borderless item-input item-stacked-label">
+    <ion-item class="item item-borderless padding-right item-input item-stacked-label">
         <span class="input-label">
             <i class="ion ion-ios-telephone-outline"></i> Telefone Fixo *:
         </span>
         <input type="tel" ng-model="client.telefone_fixo" placeholder="Telefone Fixo" name="telefone_fixo" required>
         <i class="icon ion-alert-circled error"> Preencha o Telefone Fixo</i>
     </ion-item>
-    <ion-item class="item item-borderless item-input item-stacked-label">
+    <ion-item class="item item-borderless padding-right item-input item-stacked-label">
         <span class="input-label">
             <i class="ion ion-locked"></i> Senha *:
         </span>
@@ -61,7 +61,7 @@
     <ion-item class="item-divider">
         <b>Alterar senha</b>
     </ion-item>
-    <ion-item class="item item-borderless item-input item-stacked-label">
+    <ion-item class="item item-borderless padding-right item-input item-stacked-label">
         <span class="input-label">
             <i class="ion ion-locked"></i> Nova Senha (opcional):
         </span>
